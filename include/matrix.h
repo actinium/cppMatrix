@@ -5,6 +5,7 @@
 
 template<class T>
 class matrix{
+  template<class RT> class matrix_row;
   //---------------------------------------------------------------------------
   // Constructors and assignments
   //---------------------------------------------------------------------------
@@ -27,13 +28,19 @@ class matrix{
  public:
   T& at( std::size_t, std::size_t );
   const T& at( std::size_t, std::size_t ) const;
-  //reference       operator[]( std::size_t );
-  //const_reference operator[]( std::size_t ) const;
+  matrix_row<T> operator[]( std::size_t );
+  const matrix_row<T> operator[]( std::size_t ) const;
 
   //---------------------------------------------------------------------------
   // Iterators
   //---------------------------------------------------------------------------
  public:
+  matrix_row<T> begin();
+  matrix_row<T> end();
+  const matrix_row<T> begin() const;
+  const matrix_row<T> end() const;
+  const matrix_row<T> cbegin() const;
+  const matrix_row<T> cend() const;
 
   //---------------------------------------------------------------------------
   // Size
@@ -58,6 +65,30 @@ class matrix{
   std::vector<T> data_;
   std::size_t rows_;
   std::size_t cols_;
+ private:
+  //---------------------------------------------------------------------------
+  // Row Class
+  //---------------------------------------------------------------------------
+  template<class RT>
+  class matrix_row{
+   public:
+    // Constructor
+    matrix_row(std::size_t);
+    // Element Access
+    T& operator[](std::size_t);
+    const T& operator[](std::size_t) const;
+    // Iterators
+    RT* begin();
+    RT* end();
+    const RT* begin() const;
+    const RT* end() const;
+    const RT* cbegin() const;
+    const RT* cend() const;
+    // Modifiers
+   private:
+    matrix<RT>* matrix_;
+    std::size_t row_;
+  };
 };
 
 
