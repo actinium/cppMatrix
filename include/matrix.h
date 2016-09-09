@@ -1,6 +1,8 @@
 #ifndef ACTINIUM_MATRIX_H
 #define ACTINIUM_MATRIX_H
 
+#include <vector>
+
 template<class T>
 class matrix{
   //---------------------------------------------------------------------------
@@ -38,6 +40,8 @@ class matrix{
   //---------------------------------------------------------------------------
  public:
   std::pair<std::size_t,std::size_t> size();
+  std::size_t rows();
+  std::size_t columns();
 
   //---------------------------------------------------------------------------
   // Modifiers
@@ -51,6 +55,9 @@ class matrix{
     // swap m1 and m2
   }
  private:
+  std::vector<T> data_;
+  std::size_t rows_;
+  std::size_t cols_;
 };
 
 //-----------------------------------------------------------------------------
