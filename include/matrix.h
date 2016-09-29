@@ -5,7 +5,7 @@
 
 template<class T>
 class matrix{
-  template<class RT> class matrix_row;
+  class matrix_row;
   //---------------------------------------------------------------------------
   // Constructors and assignments
   //---------------------------------------------------------------------------
@@ -28,19 +28,19 @@ class matrix{
  public:
   T& at( std::size_t, std::size_t );
   const T& at( std::size_t, std::size_t ) const;
-  matrix_row<T> operator[]( std::size_t );
-  const matrix_row<T> operator[]( std::size_t ) const;
+  matrix_row operator[]( std::size_t );
+  const matrix_row operator[]( std::size_t ) const;
 
   //---------------------------------------------------------------------------
   // Iterators
   //---------------------------------------------------------------------------
  public:
-  matrix_row<T> begin();
-  matrix_row<T> end();
-  const matrix_row<T> begin() const;
-  const matrix_row<T> end() const;
-  const matrix_row<T> cbegin() const;
-  const matrix_row<T> cend() const;
+  matrix_row begin();
+  matrix_row end();
+  const matrix_row begin() const;
+  const matrix_row end() const;
+  const matrix_row cbegin() const;
+  const matrix_row cend() const;
 
   //---------------------------------------------------------------------------
   // Size
@@ -69,7 +69,6 @@ class matrix{
   //---------------------------------------------------------------------------
   // Row Class
   //---------------------------------------------------------------------------
-  template<class RT>
   class matrix_row{
    public:
     // Constructor
@@ -78,15 +77,15 @@ class matrix{
     T& operator[](std::size_t);
     const T& operator[](std::size_t) const;
     // Iterators
-    RT* begin();
-    RT* end();
-    const RT* begin() const;
-    const RT* end() const;
-    const RT* cbegin() const;
-    const RT* cend() const;
+    T* begin();
+    T* end();
+    const T* begin() const;
+    const T* end() const;
+    const T* cbegin() const;
+    const T* cend() const;
     // Modifiers
    private:
-    matrix<RT>* matrix_;
+    matrix<T>* matrix_;
     std::size_t row_;
   };
 };
