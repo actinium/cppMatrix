@@ -91,10 +91,10 @@ class matrix{
 };
 
 
-#include "matrix.constructors.inc.h"
-#include "matrix.assignment.inc.h"
-#include "matrix.access.inc.h"
-#include "matrix.modifires.inc.h"
-#include "matrix.comparison.inc.h"
+#include "matrix_constructors_impl.h"
+#include "matrix_assignment_impl.h"
+#include "matrix_access_impl.h"
+#include "matrix_modifires_impl.h"
+#include "matrix_comparison_impl.h"
 
 #endif

@@ -5,11 +5,11 @@ INCDIR=include
 TESTDIR=test
 
 _INCLUDES= matrix.h \
-           matrix.constructors.inc.h \
-           matrix.assignment.inc.h \
-           matrix.access.inc.h \
-           matrix.modifires.inc.h \
-           matrix.comparison.inc.h
+           matrix_constructors_impl.h \
+           matrix_assignment_impl.h \
+           matrix_access_impl.h \
+           matrix_modifires_impl.h \
+           matrix_comparison_impl.h
 
 INCLUDES=$(patsubst %,$(INCDIR)/%,$(_INCLUDES))
 
