@@ -15,10 +15,4 @@ matrix<T>::matrix( std::initializer_list<std::initializer_list<T>> init_list):
   // Or create concat function for init_list and use it to initialize
   // data_ vector.
 }
-/*
-template<class T>
-matrix<T>::matrix( const matrix& );
-template<class T>
-matrix<T>::matrix( matrix&& );
-*/
 

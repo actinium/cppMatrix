@@ -13,14 +13,14 @@ class matrix{
   matrix();
   matrix( std::size_t, std::size_t );
   matrix( std::initializer_list<std::initializer_list<T>> );
-  matrix( const matrix& );
-  matrix( matrix&& );
+  matrix( const matrix& ) = default;
+  matrix( matrix&& ) = default;
 
-  matrix& operator=( const matrix& );
-  matrix& operator=( matrix&& );
   matrix& operator=( std::initializer_list<std::initializer_list<T>> );
+  matrix& operator=( const matrix& ) = default;
+  matrix& operator=( matrix&& ) = default;
 
-  ~matrix(){}
+  ~matrix() = default;
 
   //---------------------------------------------------------------------------
   // Element Access
@@ -64,19 +64,21 @@ class matrix{
   //---------------------------------------------------------------------------
   // Comparison
   //---------------------------------------------------------------------------
-
+ public:
   bool operator==( const matrix<T>& other );
-
   bool operator!=( const matrix<T>& other );
 
+  //---------------------------------------------------------------------------
+  // Member Variables
+  //---------------------------------------------------------------------------
  private:
   std::vector<T> data_;
   std::size_t rows_;
   std::size_t cols_;
- private:
   //---------------------------------------------------------------------------
   // Row Class
   //---------------------------------------------------------------------------
+ private:
   class matrix_row{
    public:
     // Constructor
