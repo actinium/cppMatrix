@@ -61,6 +61,14 @@ class matrix{
     using std::swap;
     // swap m1 and m2
   }
+  //---------------------------------------------------------------------------
+  // Comparison
+  //---------------------------------------------------------------------------
+
+  bool operator==( const matrix<T>& other );
+
+  bool operator!=( const matrix<T>& other );
+
  private:
   std::vector<T> data_;
   std::size_t rows_;

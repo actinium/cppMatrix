@@ -3,8 +3,14 @@
 //-----------------------------------------------------------------------------
 
 template< class T >
-bool operator==( const matrix<T>& lhs, const matrix<T>& rhs );
+bool matrix<T>::operator==( const matrix<T>& other ){
+  // TODO
+  return false;
+}
 
 template< class T >
-bool operator!=( const matrix<T>& lhs, const matrix<T>& rhs );
+bool matrix<T>::operator!=( const matrix<T>& other ){
+  // TODO
+  return false;
+}
 
