@@ -8,6 +8,7 @@ _INCLUDES= matrix.h \
            matrix_constructors_impl.h \
            matrix_assignment_impl.h \
            matrix_access_impl.h \
+           matrix_math_impl.h \
            matrix_modifires_impl.h \
            matrix_comparison_impl.h
 
