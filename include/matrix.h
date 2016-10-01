@@ -92,6 +92,12 @@ class matrix{
     std::size_t row_;
   };
   //---------------------------------------------------------------------------
+  // Helper functions
+  //---------------------------------------------------------------------------
+ private:
+  std::vector<T> make_vector(std::initializer_list<std::initializer_list<T>>);
+
+  //---------------------------------------------------------------------------
   // Member Variables
   //---------------------------------------------------------------------------
  private:
@@ -107,5 +113,6 @@ class matrix{
 #include "matrix_math_impl.h"
 #include "matrix_modifires_impl.h"
 #include "matrix_comparison_impl.h"
+#include "matrix_helper_functions_impl.h"
 
 #endif

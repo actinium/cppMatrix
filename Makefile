@@ -10,7 +10,8 @@ _INCLUDES= matrix.h \
            matrix_access_impl.h \
            matrix_math_impl.h \
            matrix_modifires_impl.h \
-           matrix_comparison_impl.h
+           matrix_comparison_impl.h \
+           matrix_helper_functions_impl.h
 
 INCLUDES=$(patsubst %,$(INCDIR)/%,$(_INCLUDES))
 
