@@ -11,8 +11,5 @@ template<class T>
 matrix<T>::matrix( std::initializer_list<std::initializer_list<T>> init_list):
     data_( make_vector(init_list) ),
     rows_(init_list.size()),cols_( init_list.begin()->size() ){
-  // TODO: copy values
-  // Or create concat function for init_list and use it to initialize
-  // data_ vector.
 }
 
