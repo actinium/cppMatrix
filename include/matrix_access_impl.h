@@ -18,7 +18,8 @@ typename matrix<T>::matrix_row matrix<T>::operator[]( std::size_t row ){
 }
 
 template<class T>
-const typename matrix<T>::matrix_row matrix<T>::operator[]( std::size_t row ) const{
+const typename matrix<T>::matrix_row matrix<T>::operator[](
+    std::size_t row ) const{
   return 0;
 }
 
