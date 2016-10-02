@@ -11,3 +11,7 @@ std::vector<T> matrix<T>::make_vector(
   return vec;
 }
 
+template<class T>
+std::size_t matrix<T>::rc2i(std::size_t row,std::size_t col){
+  return row*cols_+col;
+}

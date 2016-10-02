@@ -4,14 +4,24 @@
 
 template<class T>
 T& matrix<T>::at( std::size_t row, std::size_t col ){
-  // TODO throw if out of bounds
-  return data_.at(row*cols_+col);
+  if(row >= rows()){
+    throw std::out_of_range("row >= this->rows()!");
+  }
+  if(col >= columns()){
+    throw std::out_of_range("col >= this->columns()!");
+  }
+  return data_.at(rc2i(row,col));
 }
 
 template<class T>
 const T& matrix<T>::at( std::size_t row, std::size_t col ) const{
-  // TODO throw if out of bounds
-  return data_.at(row*cols_+col);
+  if(row >= rows()){
+    throw std::out_of_range("row >= this->rows()!");
+  }
+  if(col >= columns()){
+    throw std::out_of_range("col >= this->columns()!");
+  }
+  return data_.at(rc2i(row,col));
 }
 
 template<class T>
@@ -31,11 +41,11 @@ const typename matrix<T>::matrix_row matrix<T>::operator[](
 
 template<class T>
 T& matrix<T>::matrix_row::operator[](std::size_t col){
-  return matrix_->data_[row_*matrix_->cols_+col];
+  return matrix_->data_[matrix_->rc2i(row_,col)];
 }
 
 template<class T>
 const T& matrix<T>::matrix_row::operator[](std::size_t col) const{
-  return matrix_->data_[row_*matrix_->cols_+col];
+  return matrix_->data_[matrix_->rc2i(row_,col)];
 }
 

@@ -2,6 +2,7 @@
 #define ACTINIUM_MATRIX_H
 
 #include <vector>
+#include <stdexcept>
 
 template<class T>
 class matrix{
@@ -96,6 +97,7 @@ class matrix{
   //---------------------------------------------------------------------------
  private:
   std::vector<T> make_vector(std::initializer_list<std::initializer_list<T>>);
+  std::size_t rc2i(std::size_t row,std::size_t col);
 
   //---------------------------------------------------------------------------
   // Member Variables
