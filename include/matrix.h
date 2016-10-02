@@ -47,7 +47,6 @@ class matrix{
   // Size
   //---------------------------------------------------------------------------
  public:
-  std::pair<std::size_t,std::size_t> size();
   std::size_t rows(){ return rows_;}
   std::size_t columns(){return cols_;}
 
