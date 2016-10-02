@@ -19,7 +19,8 @@ _INCLUDES= matrix.h \
 INCLUDES=$(patsubst %,$(INCDIR)/%,$(_INCLUDES))
 
 _OBJECTS= test_main.o \
-          test_matrix_constructors.o
+          test_matrix_constructors.o \
+          test_matrix_access.o
 
 OBJECTS=$(patsubst %,$(OBJDIR)/%,$(_OBJECTS))
 

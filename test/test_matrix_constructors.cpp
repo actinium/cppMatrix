@@ -63,4 +63,16 @@ TEST_CASE( "Test copy constructor", "[matrix][constructors]" ) {
     REQUIRE( m2.at(1,1) == 5 );
     REQUIRE( m2.at(1,2) == 6 );
   }
+  SECTION("Copy construct a 2x3 matrix with values from const"){
+    const matrix<int> m_init = {{1,2,3},{4,5,6}};
+    matrix<int> m2 = m_init;
+    REQUIRE( m2.rows() == 2 );
+    REQUIRE( m2.columns() == 3 );
+    REQUIRE( m2.at(0,0) == 1 );
+    REQUIRE( m2.at(0,1) == 2 );
+    REQUIRE( m2.at(0,2) == 3 );
+    REQUIRE( m2.at(1,0) == 4 );
+    REQUIRE( m2.at(1,1) == 5 );
+    REQUIRE( m2.at(1,2) == 6 );
+  }
 }
