@@ -11,6 +11,11 @@ TEST_CASE( "Test size constructor", "[matrix][constructors]" ) {
   matrix<int> m3_4(3,4);
   REQUIRE( m3_4.rows() == 3 );
   REQUIRE( m3_4.columns() == 4 );
+  for(int r=0; r < m3_4.rows(); ++r){
+    for(int c=0; c < m3_4.columns(); ++c){
+      REQUIRE( m3_4.at(r,c) == 0 );
+    }
+  }
 
   matrix<int> m0_0(0,0);
   REQUIRE( m0_0.rows() == 0 );
