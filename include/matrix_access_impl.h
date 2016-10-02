@@ -4,11 +4,13 @@
 
 template<class T>
 T& matrix<T>::at( std::size_t row, std::size_t col ){
+  // TODO throw if out of bounds
   return data_.at(row*cols_+col);
 }
 
 template<class T>
 const T& matrix<T>::at( std::size_t row, std::size_t col ) const{
+  // TODO throw if out of bounds
   return data_.at(row*cols_+col);
 }
 
