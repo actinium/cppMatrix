@@ -20,7 +20,8 @@ INCLUDES=$(patsubst %,$(INCDIR)/%,$(_INCLUDES))
 
 _OBJECTS= test_main.o \
           test_matrix_constructors.o \
-          test_matrix_access.o
+          test_matrix_access.o \
+          test_matrix_comparison.o
 
 OBJECTS=$(patsubst %,$(OBJDIR)/%,$(_OBJECTS))
 

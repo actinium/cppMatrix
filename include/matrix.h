@@ -47,8 +47,8 @@ class matrix{
   // Size
   //---------------------------------------------------------------------------
  public:
-  std::size_t rows(){ return rows_;}
-  std::size_t columns(){return cols_;}
+  std::size_t rows() const { return rows_;}
+  std::size_t columns() const {return cols_;}
 
   //---------------------------------------------------------------------------
   // Modifiers
@@ -65,8 +65,8 @@ class matrix{
   // Comparison
   //---------------------------------------------------------------------------
  public:
-  bool operator==( const matrix<T>& other );
-  bool operator!=( const matrix<T>& other );
+  bool operator==( const matrix<T>& other ) const;
+  bool operator!=( const matrix<T>& other ) const;
 
   //---------------------------------------------------------------------------
   // Row Class

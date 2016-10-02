@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 
 template< class T >
-bool matrix<T>::operator==( const matrix<T>& other ){
+bool matrix<T>::operator==( const matrix<T>& other ) const {
   if( rows() != other.rows() ){
     return false;
   }
@@ -14,7 +14,7 @@ bool matrix<T>::operator==( const matrix<T>& other ){
 }
 
 template< class T >
-bool matrix<T>::operator!=( const matrix<T>& other ){
+bool matrix<T>::operator!=( const matrix<T>& other ) const {
   return !operator==(other);
 }
 
