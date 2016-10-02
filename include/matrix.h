@@ -75,7 +75,7 @@ class matrix{
   class matrix_row{
    public:
     // Constructor
-    matrix_row(std::size_t);
+    matrix_row(matrix*,std::size_t);
     // Element Access
     T& operator[](std::size_t);
     const T& operator[](std::size_t) const;
