@@ -15,8 +15,13 @@ _INCLUDES= matrix.h \
 
 INCLUDES=$(patsubst %,$(INCDIR)/%,$(_INCLUDES))
 
-test_matrix:$(TESTDIR)/test_matrix.cpp $(INCLUDES)
-	$(CXX) $(CXXFLAGS) -o test_matrix $(TESTDIR)/test_matrix.cpp
+_TESTFILES= test_matrix.cpp \
+						test_matrix_constructors.cpp
+
+TESTFILES=$(patsubst %,$(TESTDIR)/%,$(_TESTFILES))
+
+test_matrix:$(TESTFILES) $(INCLUDES)
+	$(CXX) $(CXXFLAGS) -o test_matrix $(TESTFILES)
 
 .PHONY: run-test
 run-test: test_matrix
