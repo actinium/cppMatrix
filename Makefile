@@ -18,13 +18,17 @@ _INCLUDES= matrix.h \
 
 INCLUDES=$(patsubst %,$(INCDIR)/%,$(_INCLUDES))
 
-_OBJECTS= test_matrix.o \
+_OBJECTS= test_main.o \
           test_matrix_constructors.o
 
 OBJECTS=$(patsubst %,$(OBJDIR)/%,$(_OBJECTS))
 
 test_matrix: $(OBJECTS)
 	$(CXX) -o $@ $^ $(CXXFLAGS)
+
+$(OBJDIR)/test_main.o: $(TESTDIR)/test_main.cpp
+	$(DIR_GUARD)
+	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
 $(OBJDIR)/%.o: $(TESTDIR)/%.cpp $(INCLUDES)
 	$(DIR_GUARD)
