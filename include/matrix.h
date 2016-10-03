@@ -54,7 +54,6 @@ class matrix{
   // Modifiers
   //---------------------------------------------------------------------------
  public:
-  void clear();
   void resize( std::size_t, std::size_t );
   void swap( matrix& );
   friend void swap( matrix& m1, matrix& m2){
