@@ -13,6 +13,7 @@ _INCLUDES= matrix.h \
            matrix_access_impl.h \
            matrix_math_impl.h \
            matrix_modifiers_impl.h \
+           matrix_iterators_impl.h \
            matrix_comparison_impl.h \
            matrix_helper_functions_impl.h
 
