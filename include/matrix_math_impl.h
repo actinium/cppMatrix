@@ -19,13 +19,14 @@ matrix<T> operator-( const matrix<T>& m1 ){
 //-----------------------------------------------------------------------------
 // Addition
 //-----------------------------------------------------------------------------
-template<class T>
-matrix<T> operator+( const matrix<T>& m1, const matrix<T>& m2 ){
+template<class T1, class T2>
+auto operator+( const matrix<T1>& m1, const matrix<T2>& m2 )
+  -> matrix<decltype(m1[0][0]*m2[0][0])>{
   if(m1.rows() != m2.rows() || m1.columns() != m2.columns()){
     throw dimension_error(
         "Matrix addition requires same dimensions for both matrices!");
   }
-  matrix<T> mr(m1.rows(),m1.columns());
+  matrix<decltype(m1[0][0]*m2[0][0])> mr(m1.rows(),m1.columns());
   for(std::size_t r=0; r < mr.rows(); ++r){
     for(std::size_t c=0; c < mr.columns(); ++c){
       mr[r][c] = m1[r][c] + m2[r][c];
@@ -54,13 +55,14 @@ auto operator+( const matrix<T>& m, const C& constant)
 //-----------------------------------------------------------------------------
 // Subtraction
 //-----------------------------------------------------------------------------
-template<class T>
-matrix<T> operator-( const matrix<T>& m1, const matrix<T>& m2 ){
+template<class T1, class T2>
+auto operator-( const matrix<T1>& m1, const matrix<T2>& m2 )
+  -> matrix<decltype(m1[0][0]*m2[0][0])>{
   if(m1.rows() != m2.rows() || m1.columns() != m2.columns()){
     throw dimension_error(
         "Matrix subtraction requires same dimensions for both matrices!");
   }
-  matrix<T> mr(m1.rows(),m1.columns());
+  matrix<decltype(m1[0][0]*m2[0][0])> mr(m1.rows(),m1.columns());
   for(std::size_t r=0; r < mr.rows(); ++r){
     for(std::size_t c=0; c < mr.columns(); ++c){
       mr[r][c] = m1[r][c] - m2[r][c];
@@ -95,6 +97,22 @@ auto operator-( const matrix<T>& m, const C& constant)
 //-----------------------------------------------------------------------------
 // Multiplication
 //-----------------------------------------------------------------------------
+template<class T1, class T2>
+auto operator*( const matrix<T1>& m1, const matrix<T2>& m2 )
+  -> matrix<decltype(m1[0][0]*m2[0][0])>{
+  if(m1.columns() != m2.rows() ){
+    throw dimension_error(
+        "Matrix multiplication requires number of rows and columns to match!");
+  }
+  matrix<decltype(m1[0][0]*m2[0][0])> mr(m1.rows(),m2.columns());
+  for(std::size_t r=0; r < mr.rows(); ++r){
+    for(std::size_t c=0; c < mr.columns(); ++c){
+      // TODO
+    }
+  }
+  return mr;
+}
+
 template<class C,class T>
 matrix<T> operator*( const C& constant, const matrix<T>& m ){
   matrix<T> mr(m.rows(),m.columns());
