@@ -14,6 +14,9 @@ TEST_CASE( "Test matrix unary minus", "[matrix][math]" ) {
   }
 }
 
+//-----------------------------------------------------------------------------
+// Addition
+//-----------------------------------------------------------------------------
 TEST_CASE( "Test matrix addition", "[matrix][math]" ) {
   SECTION("Add two empty matrices"){
     matrix<int> m1 = {};
@@ -47,6 +50,9 @@ TEST_CASE( "Test scalar matrix addition", "[matrix][math]" ) {
   }
 }
 
+//-----------------------------------------------------------------------------
+// Subtraction
+//-----------------------------------------------------------------------------
 TEST_CASE( "Test matrix subtraction", "[matrix][math]" ) {
   SECTION("Subtract two empty matrices"){
     matrix<int> m1 = {};
@@ -67,6 +73,9 @@ TEST_CASE( "Test matrix subtraction", "[matrix][math]" ) {
   }
 }
 
+//-----------------------------------------------------------------------------
+// Multiplication
+//-----------------------------------------------------------------------------
 TEST_CASE( "Test scalar matrix subtraction", "[matrix][math]" ) {
   SECTION("Multiply a 2x3 matrix by a constant"){
     matrix<int> m  = {{1,2, 3},{0,-1,-2}};
