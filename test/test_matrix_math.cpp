@@ -38,12 +38,12 @@ TEST_CASE( "Test matrix addition", "[matrix][math]" ) {
 }
 
 TEST_CASE( "Test scalar matrix addition", "[matrix][math]" ) {
-  SECTION("Multiply a 2x3 matrix by a constant"){
+  SECTION("Add a constant to a 2x3 matrix"){
     matrix<int> m  = {{1,2,3},{0,-1,-2}};
     matrix<int> mr = {{3,4,5},{2, 1, 0}};
     REQUIRE( mr == 2 + m );
   }
-  SECTION("Multiply a 2x3 matrix by a constant"){
+  SECTION("Add a constant to a 2x3 matrix"){
     matrix<int> m  = {{1,2,3},{0,-1,-2}};
     matrix<int> mr = {{3,4,5},{2, 1, 0}};
     REQUIRE( mr == m + 2 );
@@ -73,22 +73,22 @@ TEST_CASE( "Test matrix subtraction", "[matrix][math]" ) {
   }
 }
 
-//-----------------------------------------------------------------------------
-// Multiplication
-//-----------------------------------------------------------------------------
 TEST_CASE( "Test scalar matrix subtraction", "[matrix][math]" ) {
-  SECTION("Multiply a 2x3 matrix by a constant"){
+  SECTION("Subtract a constant to a 2x3 matrix"){
     matrix<int> m  = {{1,2, 3},{0,-1,-2}};
     matrix<int> mr = {{1,0,-1},{2, 3, 4}};
     REQUIRE( mr == 2 - m );
   }
-  SECTION("Multiply a 2x3 matrix by a constant"){
+  SECTION("Subtract a constant to a 2x3 matrix"){
     matrix<int> m  = {{ 1,2,3},{ 0,-1,-2}};
     matrix<int> mr = {{-1,0,1},{-2,-3,-4}};
     REQUIRE( mr == m - 2 );
   }
 }
 
+//-----------------------------------------------------------------------------
+// Multiplication
+//-----------------------------------------------------------------------------
 TEST_CASE( "Test scalar matrix multiplication", "[matrix][math]" ) {
   SECTION("Multiply a 2x3 matrix by a constant"){
     matrix<int> m  = {{2,2,0},{-2, 3,-4}};
