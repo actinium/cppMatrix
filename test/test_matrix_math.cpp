@@ -89,6 +89,37 @@ TEST_CASE( "Test scalar matrix subtraction", "[matrix][math]" ) {
 //-----------------------------------------------------------------------------
 // Multiplication
 //-----------------------------------------------------------------------------
+TEST_CASE( "Test matrix multiplication", "[matrix][math]" ) {
+  SECTION("Multiply two empty matrices"){
+    matrix<int> m1 = {};
+    matrix<int> m2 = {};
+    matrix<int> mr = {};
+    REQUIRE( mr == m1 * m2 );
+  }
+  SECTION("Multiply two matrices"){
+    matrix<int> m1 = {{1,2,3},{4,5,6}};
+    matrix<int> m2 = {{7,8},{9,10},{11,12}};
+    matrix<int> mr = {{58,64},{139,154}};
+    REQUIRE( mr == m1 * m2 );
+  }
+  SECTION("Multiply two matrices"){
+    matrix<int> m1 = {{3,4,2}};
+    matrix<int> m2 = {{13, 9, 7,15},
+                      { 8, 7, 4, 6},
+                      { 6, 4, 0, 3}};
+    matrix<int> mr = {{83,63,37,75}};
+    REQUIRE( mr == m1 * m2 );
+  }
+  SECTION("Multiply two matrices"){
+    matrix<int> m1 = {{3,4,2}};
+    matrix<int> m2 = {{1},
+                      {8},
+                      {6}};
+    matrix<int> mr = {{47}};
+    REQUIRE( mr == m1 * m2 );
+  }
+}
+
 TEST_CASE( "Test scalar matrix multiplication", "[matrix][math]" ) {
   SECTION("Multiply a 2x3 matrix by a constant"){
     matrix<int> m  = {{2,2,0},{-2, 3,-4}};
