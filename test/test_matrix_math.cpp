@@ -118,6 +118,16 @@ TEST_CASE( "Test matrix multiplication", "[matrix][math]" ) {
     matrix<int> mr = {{47}};
     REQUIRE( mr == m1 * m2 );
   }
+  SECTION("Try multiplying two matrices of wrong dimensions"){
+    matrix<int> m1 = {{1,1},{0,8}};
+    matrix<int> m2 = {{2,0},{5,1},{1,2}};
+    REQUIRE_THROWS_AS( m1 * m2, dimension_error );
+  }
+  SECTION("Try multiplying two matrices of wrong dimensions"){
+    matrix<int> m1 = {{1,1}};
+    matrix<int> m2 = {};
+    REQUIRE_THROWS_AS( m1 * m2, dimension_error );
+  }
 }
 
 TEST_CASE( "Test scalar matrix multiplication", "[matrix][math]" ) {
