@@ -23,6 +23,7 @@ _OBJECTS= test_main.o \
           test_matrix_constructors.o \
           test_matrix_access.o \
           test_matrix_modifiers.o \
+          test_matrix_math.o \
           test_matrix_comparison.o
 
 OBJECTS=$(patsubst %,$(OBJDIR)/%,$(_OBJECTS))

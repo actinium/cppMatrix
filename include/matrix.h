@@ -43,12 +43,14 @@ class matrix{
   // Iterators
   //---------------------------------------------------------------------------
  public:
+  /*
   matrix_row begin();
   matrix_row end();
   const matrix_row begin() const;
   const matrix_row end() const;
   const matrix_row cbegin() const;
   const matrix_row cend() const;
+  */
 
   //---------------------------------------------------------------------------
   // Size
