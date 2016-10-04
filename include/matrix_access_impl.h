@@ -32,7 +32,7 @@ typename matrix<T>::matrix_row matrix<T>::operator[]( std::size_t row ){
 template<class T>
 const typename matrix<T>::matrix_row matrix<T>::operator[](
     std::size_t row ) const{
-  return matrix_row(this,row);
+  return matrix_row(const_cast<matrix<T>*>(this),row);
 }
 
 //-----------------------------------------------------------------------------
