@@ -49,3 +49,16 @@ TEST_CASE( "Test matrix subtraction", "[matrix][math]" ) {
     // TODO
   }
 }
+
+TEST_CASE( "Test scalar matrix multiplication", "[matrix][math]" ) {
+  SECTION("Multiply a 2x3 matrix by a constant"){
+    matrix<int> m  = {{2,2,0},{-2, 3,-4}};
+    matrix<int> mr = {{4,4,0},{-4, 6,-8}};
+    REQUIRE( mr == 2 * m );
+  }
+  SECTION("Multiply a 2x3 matrix by a constant"){
+    matrix<int> m  = {{2,2,0},{-2, 3,-4}};
+    matrix<int> mr = {{4,4,0},{-4, 6,-8}};
+    REQUIRE( mr == m * 2 );
+  }
+}
