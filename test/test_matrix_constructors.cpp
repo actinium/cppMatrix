@@ -31,6 +31,11 @@ TEST_CASE( "Test initializer list constructor", "[matrix][constructors]" ) {
     REQUIRE( m_init_empty.rows() == 0 );
     REQUIRE( m_init_empty.columns() == 0 );
   }
+  SECTION("Construct an empty matrix"){
+    matrix<int> m_init_empty = {{}};
+    REQUIRE( m_init_empty.rows() == 0 );
+    REQUIRE( m_init_empty.columns() == 0 );
+  }
   SECTION("Construct a 2x3 matrix with values"){
     matrix<int> m_init = {{1,2,3},{4,5,6}};
     REQUIRE( m_init.rows() == 2 );
