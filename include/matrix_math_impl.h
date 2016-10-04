@@ -104,10 +104,15 @@ auto operator*( const matrix<T1>& m1, const matrix<T2>& m2 )
     throw dimension_error(
         "Matrix multiplication requires number of rows and columns to match!");
   }
+  std::size_t length = m1.columns();
   matrix<decltype(m1[0][0]*m2[0][0])> mr(m1.rows(),m2.columns());
   for(std::size_t r=0; r < mr.rows(); ++r){
     for(std::size_t c=0; c < mr.columns(); ++c){
-      // TODO
+      decltype(m1[0][0]*m2[0][0]) elem;
+      for(std::size_t i=0; i < length; ++i){
+        elem += m1[r][i]*m2[i][c];
+      }
+      mr[r][c] = elem;
     }
   }
   return mr;
