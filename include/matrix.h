@@ -94,7 +94,6 @@ class matrix{
     const T* end() const;
     const T* cbegin() const;
     const T* cend() const;
-    // Modifiers
    private:
     matrix<T>* matrix_;
     std::size_t row_;
