@@ -32,6 +32,19 @@ TEST_CASE( "Test matrix addition", "[matrix][math]" ) {
   }
 }
 
+TEST_CASE( "Test scalar matrix addition", "[matrix][math]" ) {
+  SECTION("Multiply a 2x3 matrix by a constant"){
+    matrix<int> m  = {{1,2,3},{0,-1,-2}};
+    matrix<int> mr = {{3,4,5},{2, 1, 0}};
+    REQUIRE( mr == 2 + m );
+  }
+  SECTION("Multiply a 2x3 matrix by a constant"){
+    matrix<int> m  = {{1,2,3},{0,-1,-2}};
+    matrix<int> mr = {{3,4,5},{2, 1, 0}};
+    REQUIRE( mr == m + 2 );
+  }
+}
+
 TEST_CASE( "Test matrix subtraction", "[matrix][math]" ) {
   SECTION("Subtract two empty matrices"){
     matrix<int> m1 = {};
@@ -47,6 +60,19 @@ TEST_CASE( "Test matrix subtraction", "[matrix][math]" ) {
   }
   SECTION("Try subtracting two 2x2 matrices of different dimensions"){
     // TODO
+  }
+}
+
+TEST_CASE( "Test scalar matrix subtraction", "[matrix][math]" ) {
+  SECTION("Multiply a 2x3 matrix by a constant"){
+    matrix<int> m  = {{1,2, 3},{0,-1,-2}};
+    matrix<int> mr = {{1,0,-1},{2, 3, 4}};
+    REQUIRE( mr == 2 - m );
+  }
+  SECTION("Multiply a 2x3 matrix by a constant"){
+    matrix<int> m  = {{ 1,2,3},{ 0,-1,-2}};
+    matrix<int> mr = {{-1,0,1},{-2,-3,-4}};
+    REQUIRE( mr == m - 2 );
   }
 }
 

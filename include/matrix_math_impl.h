@@ -77,7 +77,13 @@ matrix<T> operator-( const C& constant, const matrix<T>& m ){
 }
 template<class C,class T>
 matrix<T> operator-( const matrix<T>& m, const C& constant){
-  return operator-( constant, m );
+  matrix<T> mr(m.rows(),m.columns());
+  for(std::size_t r=0; r < mr.rows(); ++r){
+    for(std::size_t c=0; c < mr.columns(); ++c){
+      mr[r][c] = m[r][c] - constant;
+    }
+  }
+  return mr;
 }
 
 //-----------------------------------------------------------------------------
