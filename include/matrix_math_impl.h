@@ -21,9 +21,10 @@ matrix<T> operator-( const matrix<T>& m1 ){
 //-----------------------------------------------------------------------------
 template<class T>
 matrix<T> operator+( const matrix<T>& m1, const matrix<T>& m2 ){
-  // !!!
-  // throw if dimensons missmatch
-  // !!!
+  if(m1.rows() != m2.rows() || m1.columns() != m2.columns()){
+    throw dimension_error(
+        "Matrix addition requires same dimensions for both matrices!");
+  }
   matrix<T> mr(m1.rows(),m1.columns());
   for(std::size_t r=0; r < mr.rows(); ++r){
     for(std::size_t c=0; c < mr.columns(); ++c){
@@ -55,9 +56,10 @@ auto operator+( const matrix<T>& m, const C& constant)
 //-----------------------------------------------------------------------------
 template<class T>
 matrix<T> operator-( const matrix<T>& m1, const matrix<T>& m2 ){
-  // !!!
-  // throw if dimensons missmatch
-  // !!!
+  if(m1.rows() != m2.rows() || m1.columns() != m2.columns()){
+    throw dimension_error(
+        "Matrix subtraction requires same dimensions for both matrices!");
+  }
   matrix<T> mr(m1.rows(),m1.columns());
   for(std::size_t r=0; r < mr.rows(); ++r){
     for(std::size_t c=0; c < mr.columns(); ++c){

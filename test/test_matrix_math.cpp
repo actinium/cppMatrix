@@ -27,8 +27,10 @@ TEST_CASE( "Test matrix addition", "[matrix][math]" ) {
     matrix<int> mr = {{3,1},{5,7}};
     REQUIRE( mr == m1 + m2 );
   }
-  SECTION("Try adding two 2x2 matrices of different dimensions"){
-    // TODO
+  SECTION("Try adding two matrices of different dimensions"){
+    matrix<int> m1 = {{1,1},{0,8}};
+    matrix<int> m2 = {{2,0},{5,1},{1,2}};
+    REQUIRE_THROWS_AS( m1 + m2, dimension_error );
   }
 }
 
@@ -58,8 +60,10 @@ TEST_CASE( "Test matrix subtraction", "[matrix][math]" ) {
     matrix<int> mr = {{1,2,-3},{-5, 5,-2}};
     REQUIRE( mr == m1 - m2 );
   }
-  SECTION("Try subtracting two 2x2 matrices of different dimensions"){
-    // TODO
+  SECTION("Try subtracting two matrices of different dimensions"){
+    matrix<int> m1 = {{1,1},{0,8}};
+    matrix<int> m2 = {{2,0},{5,1},{1,2}};
+    REQUIRE_THROWS_AS( m1 - m2, dimension_error );
   }
 }
 

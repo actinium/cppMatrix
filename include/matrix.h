@@ -115,6 +115,18 @@ class matrix{
   std::size_t cols_;
 };
 
+//-----------------------------------------------------------------------------
+// Dimension Exception
+//-----------------------------------------------------------------------------
+class dimension_error: public std::exception {
+ public:
+  explicit dimension_error( const char* what_arg ):msg_(what_arg) {}
+  virtual const char* what() const throw(){
+    return msg_.c_str();
+  }
+ private:
+  std::string msg_;
+};
 
 #include "matrix_constructors_impl.h"
 #include "matrix_assignment_impl.h"
