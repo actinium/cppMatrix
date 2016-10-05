@@ -1,6 +1,9 @@
 #include "catch.hpp"
 #include "matrix.h"
 
+//-----------------------------------------------------------------------------
+// Unary Minus
+//-----------------------------------------------------------------------------
 TEST_CASE( "Test matrix unary minus", "[matrix][math]" ) {
   SECTION("Add two empty matrices"){
     matrix<int> m1 = {};
@@ -37,6 +40,9 @@ TEST_CASE( "Test matrix addition", "[matrix][math]" ) {
   }
 }
 
+//-----------------------------------------------------------------------------
+// Scalar Addition
+//-----------------------------------------------------------------------------
 TEST_CASE( "Test scalar matrix addition", "[matrix][math]" ) {
   SECTION("Add a constant to a 2x3 matrix"){
     matrix<int> m  = {{1,2,3},{0,-1,-2}};
@@ -73,6 +79,9 @@ TEST_CASE( "Test matrix subtraction", "[matrix][math]" ) {
   }
 }
 
+//-----------------------------------------------------------------------------
+// Scalar Subtraction
+//-----------------------------------------------------------------------------
 TEST_CASE( "Test scalar matrix subtraction", "[matrix][math]" ) {
   SECTION("Subtract a constant to a 2x3 matrix"){
     matrix<int> m  = {{1,2, 3},{0,-1,-2}};
@@ -130,6 +139,9 @@ TEST_CASE( "Test matrix multiplication", "[matrix][math]" ) {
   }
 }
 
+//-----------------------------------------------------------------------------
+// Scalar Multiplication
+//-----------------------------------------------------------------------------
 TEST_CASE( "Test scalar matrix multiplication", "[matrix][math]" ) {
   SECTION("Multiply a 2x3 matrix by a constant"){
     matrix<int> m  = {{2,2,0},{-2, 3,-4}};
