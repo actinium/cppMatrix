@@ -76,6 +76,11 @@ class matrix{
  public:
   bool operator==( const matrix<T>& other ) const;
   bool operator!=( const matrix<T>& other ) const;
+  //---------------------------------------------------------------------------
+  // Maths
+  //---------------------------------------------------------------------------
+ public:
+  matrix transpose() const;
 
   //---------------------------------------------------------------------------
   // Row Class

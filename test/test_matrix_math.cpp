@@ -154,3 +154,39 @@ TEST_CASE( "Test scalar matrix multiplication", "[matrix][math]" ) {
     REQUIRE( mr == m * 2 );
   }
 }
+//-----------------------------------------------------------------------------
+// Transpose
+//-----------------------------------------------------------------------------
+TEST_CASE( "Test matrix transposing", "[matrix][math]" ) {
+  SECTION("Transpose an empty matrix"){
+    matrix<int> m;
+    matrix<int> mt;
+    REQUIRE( m.transpose() == mt );
+  }
+  SECTION("Transpose a 5x5 identity matrix"){
+    matrix<int> m = matrix<int>::identity(5);
+    REQUIRE( m.transpose() == m );
+  }
+  SECTION("Transpose a 1x3 matrix"){
+    matrix<int> m  = {{1,2,3}};
+    matrix<int> mt = {{1},
+                      {2},
+                      {3}};
+    REQUIRE( m.transpose() == mt );
+  }
+  SECTION("Transpose a 2x2 matrix"){
+    matrix<int> m  = {{1,2},
+                      {3,4}};
+    matrix<int> mt = {{1,3},
+                      {2,4}};
+    REQUIRE( m.transpose() == mt );
+  }
+  SECTION("Transpose a 2x3 matrix"){
+    matrix<int> m  = {{1,2,3},
+                      {4,5,6}};
+    matrix<int> mt = {{1,4},
+                      {2,5},
+                      {3,6}};
+    REQUIRE( m.transpose() == mt );
+  }
+}

@@ -132,3 +132,16 @@ template<class C,class T>
 matrix<T> operator*( const matrix<T>& m, const C& constant){
   return operator*( constant, m );
 }
+//-----------------------------------------------------------------------------
+// Transpose
+//-----------------------------------------------------------------------------
+template<class T>
+matrix<T> matrix<T>::transpose() const {
+  matrix<T> mr(columns(),rows());
+  for(std::size_t r=0; r < mr.rows(); ++r){
+    for(std::size_t c=0; c < mr.columns(); ++c){
+      mr[r][c] = (*this)[c][r];
+    }
+  }
+  return mr;
+}
