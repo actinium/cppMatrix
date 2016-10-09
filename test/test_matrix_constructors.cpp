@@ -49,6 +49,28 @@ TEST_CASE( "Test initializer list constructor", "[matrix][constructors]" ) {
   }
 }
 
+TEST_CASE( "Test identity construction", "[matrix][constructors]" ) {
+  SECTION("Construct an empty matrix"){
+    matrix<int> m = matrix<int>::identity(0);
+    REQUIRE( m.rows() == 0 );
+    REQUIRE( m.columns() == 0 );
+  }
+  SECTION("Construct a 3x3 identity matrix"){
+    matrix<int> m = matrix<int>::identity(3);
+    REQUIRE( m.rows() == 3 );
+    REQUIRE( m.columns() == 3 );
+    REQUIRE( m.at(0,0) == 1 );
+    REQUIRE( m.at(0,1) == 0 );
+    REQUIRE( m.at(0,2) == 0 );
+    REQUIRE( m.at(1,0) == 0 );
+    REQUIRE( m.at(1,1) == 1 );
+    REQUIRE( m.at(1,2) == 0 );
+    REQUIRE( m.at(2,0) == 0 );
+    REQUIRE( m.at(2,1) == 0 );
+    REQUIRE( m.at(2,2) == 1 );
+  }
+}
+
 TEST_CASE( "Test copy constructor", "[matrix][constructors]" ) {
   SECTION("Copy construct an empty matrix"){
     matrix<int> m_init_empty = {};

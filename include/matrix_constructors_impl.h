@@ -25,6 +25,14 @@ matrix<T>::matrix( std::initializer_list<std::initializer_list<T>> init_list):
   }
 }
 
+template<class T>
+matrix<T> matrix<T>::identity(std::size_t size){
+  matrix<T> ret(size,size);
+  for(int i=0; i<size; ++i){
+    ret[i][i] = 1;
+  }
+  return ret;
+}
 //-----------------------------------------------------------------------------
 // Row Class Constructor
 //-----------------------------------------------------------------------------

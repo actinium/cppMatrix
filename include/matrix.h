@@ -21,6 +21,7 @@ class matrix{
   matrix();
   matrix( std::size_t, std::size_t );
   matrix( std::initializer_list<std::initializer_list<T>> );
+  static matrix identity(std::size_t);
   matrix( const matrix& ) = default;
   matrix( matrix&& ) = default;
 
