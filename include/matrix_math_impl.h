@@ -151,6 +151,10 @@ matrix<T> matrix<T>::transpose() const {
 template<class T>
 template<class DT>
 DT matrix<T>::determinant() const{
+  if(columns() != rows() ){
+    throw dimension_error(
+        "Determinant can only be calculated for square matrices!");
+  }
   // TODO
   return 0;
 }
@@ -159,6 +163,10 @@ DT matrix<T>::determinant() const{
 //-----------------------------------------------------------------------------
 template<class T>
 matrix<T> matrix<T>::inverse() const {
+  if(columns() != rows() ){
+    throw dimension_error(
+        "The inverse can only be calculated for square matrices!");
+  }
   // TODO
   return *this;
 }
