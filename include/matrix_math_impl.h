@@ -145,3 +145,20 @@ matrix<T> matrix<T>::transpose() const {
   }
   return mr;
 }
+//-----------------------------------------------------------------------------
+// Determinant
+//-----------------------------------------------------------------------------
+template<class T>
+template<class DT>
+DT matrix<T>::determinant() const{
+  // TODO
+  return 0;
+}
+//-----------------------------------------------------------------------------
+// Inverse
+//-----------------------------------------------------------------------------
+template<class T>
+matrix<T> matrix<T>::inverse() const {
+  // TODO
+  return *this;
+}

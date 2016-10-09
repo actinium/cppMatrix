@@ -81,6 +81,9 @@ class matrix{
   //---------------------------------------------------------------------------
  public:
   matrix transpose() const;
+  template<class DT=T>
+  DT determinant() const;
+  matrix inverse() const;
 
   //---------------------------------------------------------------------------
   // Row Class
