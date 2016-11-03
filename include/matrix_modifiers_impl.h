@@ -2,6 +2,8 @@
 // Modifiers
 //-----------------------------------------------------------------------------
 
+namespace mat{
+
 template<class T>
 void matrix<T>::resize( std::size_t rows, std::size_t cols ){
   std::size_t old_rows = this->rows();
@@ -17,4 +19,6 @@ void matrix<T>::resize( std::size_t rows, std::size_t cols ){
   rows_ = rows;
   cols_ = cols;
   data_ = new_data;
+}
+
 }

@@ -2,6 +2,8 @@
 // Constructors
 //-----------------------------------------------------------------------------
 
+namespace mat{
+
 template<class T>
 matrix<T>::matrix():
     data_(),
@@ -33,10 +35,17 @@ matrix<T> matrix<T>::identity(std::size_t size){
   }
   return ret;
 }
+
+}
+
 //-----------------------------------------------------------------------------
 // Row Class Constructor
 //-----------------------------------------------------------------------------
 
+namespace mat{
+
 template<class T>
 matrix<T>::matrix_row::matrix_row( matrix<T>* mp, std::size_t row):
     matrix_(mp), row_(row){}
+
+}

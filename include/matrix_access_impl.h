@@ -2,6 +2,8 @@
 // Element Access
 //-----------------------------------------------------------------------------
 
+namespace mat{
+
 template<class T>
 T& matrix<T>::at( std::size_t row, std::size_t col ){
   if(row >= rows()){
@@ -35,9 +37,13 @@ const typename matrix<T>::matrix_row matrix<T>::operator[](
   return matrix_row(const_cast<matrix<T>*>(this),row);
 }
 
+}
+
 //-----------------------------------------------------------------------------
 // Row class element Access
 //-----------------------------------------------------------------------------
+
+namespace mat{
 
 template<class T>
 T& matrix<T>::matrix_row::operator[](std::size_t col){
@@ -49,3 +55,4 @@ const T& matrix<T>::matrix_row::operator[](std::size_t col) const{
   return matrix_->data_[matrix_->rc2i(row_,col)];
 }
 
+}

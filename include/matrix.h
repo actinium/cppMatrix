@@ -4,6 +4,8 @@
 #include <vector>
 #include <stdexcept>
 
+namespace mat{
+
 template<class T>
 class matrix{
   class matrix_row;
@@ -139,6 +141,8 @@ class dimension_error: public std::exception {
  private:
   std::string msg_;
 };
+
+}
 
 #include "matrix_constructors_impl.h"
 #include "matrix_assignment_impl.h"

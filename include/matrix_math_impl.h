@@ -5,6 +5,9 @@
 //-----------------------------------------------------------------------------
 // Unary minus
 //-----------------------------------------------------------------------------
+
+namespace mat{
+
 template<class T>
 matrix<T> operator-( const matrix<T>& m1 ){
   matrix<T> mr(m1.rows(),m1.columns());
@@ -16,9 +19,14 @@ matrix<T> operator-( const matrix<T>& m1 ){
   return mr;
 }
 
+}
+
 //-----------------------------------------------------------------------------
 // Addition
 //-----------------------------------------------------------------------------
+
+namespace mat{
+
 template<class T1, class T2>
 auto operator+( const matrix<T1>& m1, const matrix<T2>& m2 )
   -> matrix<decltype(m1[0][0]*m2[0][0])>{
@@ -46,15 +54,21 @@ auto operator+( const C& constant, const matrix<T>& m )
   }
   return mr;
 }
+
 template<class C,class T>
 auto operator+( const matrix<T>& m, const C& constant)
   -> matrix<decltype(constant+m[0][0])>{
   return operator+( constant, m );
 }
 
+}
+
 //-----------------------------------------------------------------------------
 // Subtraction
 //-----------------------------------------------------------------------------
+
+namespace mat{
+
 template<class T1, class T2>
 auto operator-( const matrix<T1>& m1, const matrix<T2>& m2 )
   -> matrix<decltype(m1[0][0]*m2[0][0])>{
@@ -82,6 +96,7 @@ auto operator-( const C& constant, const matrix<T>& m )
   }
   return mr;
 }
+
 template<class C,class T>
 auto operator-( const matrix<T>& m, const C& constant)
   -> matrix<decltype(constant-m[0][0])>{
@@ -94,9 +109,14 @@ auto operator-( const matrix<T>& m, const C& constant)
   return mr;
 }
 
+}
+
 //-----------------------------------------------------------------------------
 // Multiplication
 //-----------------------------------------------------------------------------
+
+namespace mat{
+
 template<class T1, class T2>
 auto operator*( const matrix<T1>& m1, const matrix<T2>& m2 )
   -> matrix<decltype(m1[0][0]*m2[0][0])>{
@@ -128,13 +148,20 @@ matrix<T> operator*( const C& constant, const matrix<T>& m ){
   }
   return mr;
 }
+
 template<class C,class T>
 matrix<T> operator*( const matrix<T>& m, const C& constant){
   return operator*( constant, m );
 }
+
+}
+
 //-----------------------------------------------------------------------------
 // Transpose
 //-----------------------------------------------------------------------------
+
+namespace mat{
+
 template<class T>
 matrix<T> matrix<T>::transpose() const {
   matrix<T> mr(columns(),rows());
@@ -145,9 +172,15 @@ matrix<T> matrix<T>::transpose() const {
   }
   return mr;
 }
+
+}
+
 //-----------------------------------------------------------------------------
 // Determinant
 //-----------------------------------------------------------------------------
+
+namespace mat{
+
 template<class T>
 template<class DT>
 DT matrix<T>::determinant() const{
@@ -158,9 +191,14 @@ DT matrix<T>::determinant() const{
   // TODO
   return 0;
 }
+
+}
 //-----------------------------------------------------------------------------
 // Inverse
 //-----------------------------------------------------------------------------
+
+namespace mat{
+
 template<class T>
 matrix<T> matrix<T>::inverse() const {
   if(columns() != rows() ){
@@ -169,4 +207,6 @@ matrix<T> matrix<T>::inverse() const {
   }
   // TODO
   return *this;
+}
+
 }

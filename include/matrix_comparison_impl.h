@@ -2,6 +2,8 @@
 // Comparison
 //-----------------------------------------------------------------------------
 
+namespace mat{
+
 template< class T >
 bool matrix<T>::operator==( const matrix<T>& other ) const {
   if( rows() != other.rows() ){
@@ -18,3 +20,4 @@ bool matrix<T>::operator!=( const matrix<T>& other ) const {
   return !operator==(other);
 }
 
+}
