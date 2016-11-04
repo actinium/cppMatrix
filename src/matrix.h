@@ -1,5 +1,5 @@
-#ifndef ACTINIUM_MATRIX_H
-#define ACTINIUM_MATRIX_H
+#ifndef ACTINIUM_MAT_MATRIX_H
+#define ACTINIUM_MAT_MATRIX_H
 
 #include <vector>
 #include <stdexcept>
