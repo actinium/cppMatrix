@@ -3,11 +3,14 @@ CXXFLAGS= -I$(INCDIR) -Wall -std=c++11
 
 DIR_GUARD=@mkdir -p $(@D)
 
-INCDIR=src
+SRCDIR=src
+INCDIR=single_header
 TESTDIR=test
 OBJDIR=obj
 
-_INCLUDES= matrix.h \
+MATRIX_HEADER=$(INCDIR)/matrix.h
+
+_SOURCES= matrix.h \
            matrix_constructors_impl.h \
            matrix_assignment_impl.h \
            matrix_access_impl.h \
@@ -17,7 +20,7 @@ _INCLUDES= matrix.h \
            matrix_comparison_impl.h \
            matrix_helper_functions_impl.h
 
-INCLUDES=$(patsubst %,$(INCDIR)/%,$(_INCLUDES))
+SOURCES=$(patsubst %,$(SRCDIR)/%,$(_SOURCES))
 
 _OBJECTS= test_main.o \
           test_matrix_constructors.o \
@@ -31,11 +34,15 @@ OBJECTS=$(patsubst %,$(OBJDIR)/%,$(_OBJECTS))
 test_matrix: $(OBJECTS)
 	$(CXX) -o $@ $^ $(CXXFLAGS)
 
+$(MATRIX_HEADER): script/build_header.sh $(INCLUDES)
+	$(DIR_GUARD)
+	@./script/build_header.sh $(MATRIX_HEADER)
+
 $(OBJDIR)/test_main.o: $(TESTDIR)/test_main.cpp
 	$(DIR_GUARD)
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
-$(OBJDIR)/%.o: $(TESTDIR)/%.cpp $(INCLUDES)
+$(OBJDIR)/%.o: $(TESTDIR)/%.cpp $(MATRIX_HEADER)
 	$(DIR_GUARD)
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
