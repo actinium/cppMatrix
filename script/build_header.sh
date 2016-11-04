@@ -1,5 +1,13 @@
 #!/bin/bash
 
+################################################################################
+# build_header.sh
+#
+# This script is used for merging the files in src into a single header file.
+# It takes the target filename as a parameter.
+#
+################################################################################
+
 filename=$1
 srcdir="src"
 
