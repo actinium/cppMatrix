@@ -3,7 +3,7 @@ CXXFLAGS= -I$(INCDIR) -Wall -std=c++11
 
 DIR_GUARD=@mkdir -p $(@D)
 
-INCDIR=include
+INCDIR=src
 TESTDIR=test
 OBJDIR=obj
 
