@@ -4,7 +4,7 @@ CXXFLAGS= -I$(INCDIR) -Wall -std=c++11
 DIR_GUARD=@mkdir -p $(@D)
 
 SRCDIR=src
-INCDIR=single_header
+INCDIR=single_include
 TESTDIR=test
 OBJDIR=obj
 
