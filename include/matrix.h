@@ -13,9 +13,10 @@ class matrix{
   // Types
   //---------------------------------------------------------------------------
  public:
-  typedef T value_type;
-  typedef T& reference;
-  typedef const T& const_reference;
+  using value_type = T;
+  using reference = T&;
+  using const_reference = const T&;
+
   //---------------------------------------------------------------------------
   // Constructors and assignments
   //---------------------------------------------------------------------------
