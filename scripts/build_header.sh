@@ -46,6 +46,9 @@ function append_file {
   echo "//" >> $filename
   echo "//==============================================================================" >> $filename
   echo "" >> $filename
+  echo -n "#line 1 \"" >> $filename
+  echo -n $1 >> $filename
+  echo "\"" >> $filename
   cat $srcdir/$1 >> $filename
   echo "" >> $filename
 }
