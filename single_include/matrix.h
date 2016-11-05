@@ -429,7 +429,7 @@ template<class C,class T>
 auto operator-( const matrix<T>& m, const C& constant)
   -> matrix<decltype(constant-m[0][0])>{
   using size_type = typename matrix<T>::size_type;
-  matrix<T> mr(m.rows(),m.columns);
+  matrix<T> mr(m.rows(),m.columns());
   for(size_type r=0; r < mr.rows(); ++r){
     for(size_type c=0; c < mr.columns(); ++c){
       mr[r][c] = m[r][c] - constant;
