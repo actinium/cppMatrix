@@ -34,7 +34,7 @@ OBJECTS=$(patsubst %,$(OBJDIR)/%,$(_OBJECTS))
 test_matrix: $(OBJECTS)
 	$(CXX) -o $@ $^ $(CXXFLAGS)
 
-$(MATRIX_HEADER): scripts/build_header.sh $(INCLUDES)
+$(MATRIX_HEADER): scripts/build_header.sh $(SOURCES)
 	$(DIR_GUARD)
 	@./scripts/build_header.sh $(MATRIX_HEADER)
 
