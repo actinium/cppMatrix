@@ -21,9 +21,9 @@ class matrix{
   //----------------------------------------------------------------------------
  public:
   matrix();
-  matrix( std::size_t, std::size_t );
+  matrix( size_type, size_type );
   matrix( std::initializer_list<std::initializer_list<T>> );
-  static matrix identity(std::size_t);
+  static matrix identity( size_type );
   matrix( const matrix& ) = default;
   matrix( matrix&& ) = default;
 
@@ -37,10 +37,10 @@ class matrix{
   // Element Access
   //----------------------------------------------------------------------------
  public:
-  T& at( std::size_t, std::size_t );
-  const T& at( std::size_t, std::size_t ) const;
-  matrix_row operator[]( std::size_t );
-  const matrix_row operator[]( std::size_t ) const;
+  T& at( size_type, size_type );
+  const T& at( size_type, size_type ) const;
+  matrix_row operator[]( size_type );
+  const matrix_row operator[]( size_type ) const;
 
   //----------------------------------------------------------------------------
   // Iterators
@@ -59,14 +59,14 @@ class matrix{
   // Size
   //----------------------------------------------------------------------------
  public:
-  std::size_t rows() const { return rows_;}
-  std::size_t columns() const {return cols_;}
+  size_type rows() const { return rows_;}
+  size_type columns() const {return cols_;}
 
   //----------------------------------------------------------------------------
   // Modifiers
   //----------------------------------------------------------------------------
  public:
-  void resize( std::size_t, std::size_t );
+  void resize( size_type, size_type );
   void fill( const T& );
   void swap( matrix& );
   friend void swap( matrix& m1, matrix& m2){
@@ -97,10 +97,10 @@ class matrix{
   class matrix_row{
    public:
     // Constructor
-    matrix_row(matrix*,std::size_t);
+    matrix_row( matrix*, size_type );
     // Element Access
-    T& operator[](std::size_t);
-    const T& operator[](std::size_t) const;
+    T& operator[]( size_type );
+    const T& operator[]( size_type ) const;
     // Iterators
     T* begin();
     T* end();
@@ -110,7 +110,7 @@ class matrix{
     const T* cend() const;
    private:
     matrix<T>* matrix_;
-    std::size_t row_;
+    size_type row_;
   };
 
   //----------------------------------------------------------------------------
@@ -118,15 +118,15 @@ class matrix{
   //----------------------------------------------------------------------------
  private:
   std::vector<T> make_vector(std::initializer_list<std::initializer_list<T>>);
-  std::size_t rc2i(std::size_t row,std::size_t col);
+  size_type rc2i( size_type, size_type );
 
   //----------------------------------------------------------------------------
   // Member Variables
   //----------------------------------------------------------------------------
  private:
   std::vector<T> data_;
-  std::size_t rows_;
-  std::size_t cols_;
+  size_type rows_;
+  size_type cols_;
 };
 
 //------------------------------------------------------------------------------

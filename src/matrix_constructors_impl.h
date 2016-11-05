@@ -11,13 +11,13 @@ matrix<T>::matrix():
     cols_(0) {}
 
 template<class T>
-matrix<T>::matrix( std::size_t rows, std::size_t cols ):
+matrix<T>::matrix( size_type rows, size_type cols ):
     data_(rows*cols),
     rows_(rows),
     cols_(cols) {}
 
 template<class T>
-matrix<T>::matrix( std::initializer_list<std::initializer_list<T>> init_list):
+matrix<T>::matrix( std::initializer_list<std::initializer_list<T>> init_list ):
     data_( make_vector(init_list) ),
     rows_(init_list.size()),
     cols_( (init_list.size() > 0) ? init_list.begin()->size() : 0 ) {
@@ -28,7 +28,7 @@ matrix<T>::matrix( std::initializer_list<std::initializer_list<T>> init_list):
 }
 
 template<class T>
-matrix<T> matrix<T>::identity(std::size_t size){
+matrix<T> matrix<T>::identity( size_type size ){
   matrix<T> ret(size,size);
   for(int i=0; i<size; ++i){
     ret[i][i] = 1;
@@ -45,7 +45,7 @@ matrix<T> matrix<T>::identity(std::size_t size){
 namespace mat{
 
 template<class T>
-matrix<T>::matrix_row::matrix_row( matrix<T>* mp, std::size_t row):
+matrix<T>::matrix_row::matrix_row( matrix<T>* mp, size_type row ):
     matrix_(mp), row_(row){}
 
 }

@@ -5,7 +5,7 @@
 namespace mat{
 
 template<class T>
-T& matrix<T>::at( std::size_t row, std::size_t col ){
+T& matrix<T>::at( size_type row, size_type col ){
   if(row >= rows()){
     throw std::out_of_range("row >= this->rows()!");
   }
@@ -16,7 +16,7 @@ T& matrix<T>::at( std::size_t row, std::size_t col ){
 }
 
 template<class T>
-const T& matrix<T>::at( std::size_t row, std::size_t col ) const{
+const T& matrix<T>::at( size_type row, size_type col ) const{
   if(row >= rows()){
     throw std::out_of_range("row >= this->rows()!");
   }
@@ -27,13 +27,13 @@ const T& matrix<T>::at( std::size_t row, std::size_t col ) const{
 }
 
 template<class T>
-typename matrix<T>::matrix_row matrix<T>::operator[]( std::size_t row ){
+typename matrix<T>::matrix_row matrix<T>::operator[]( size_type row ){
   return matrix_row(this,row);
 }
 
 template<class T>
 const typename matrix<T>::matrix_row matrix<T>::operator[](
-    std::size_t row ) const{
+    size_type row ) const{
   return matrix_row(const_cast<matrix<T>*>(this),row);
 }
 
@@ -46,12 +46,12 @@ const typename matrix<T>::matrix_row matrix<T>::operator[](
 namespace mat{
 
 template<class T>
-T& matrix<T>::matrix_row::operator[](std::size_t col){
+T& matrix<T>::matrix_row::operator[]( size_type col ){
   return matrix_->data_[matrix_->rc2i(row_,col)];
 }
 
 template<class T>
-const T& matrix<T>::matrix_row::operator[](std::size_t col) const{
+const T& matrix<T>::matrix_row::operator[]( size_type col ) const{
   return matrix_->data_[matrix_->rc2i(row_,col)];
 }
 

@@ -14,8 +14,11 @@ std::vector<T> matrix<T>::make_vector(
   return vec;
 }
 
+/**
+ * rc2i - Matrix (r)ow and (c)olumn to Vector (i)ndex conversion
+ */
 template<class T>
-std::size_t matrix<T>::rc2i(std::size_t row,std::size_t col){
+typename matrix<T>::size_type matrix<T>::rc2i( size_type row, size_type col ){
   return row*cols_+col;
 }
 

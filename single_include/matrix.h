@@ -41,9 +41,9 @@ class matrix{
   //----------------------------------------------------------------------------
  public:
   matrix();
-  matrix( std::size_t, std::size_t );
+  matrix( size_type, size_type );
   matrix( std::initializer_list<std::initializer_list<T>> );
-  static matrix identity(std::size_t);
+  static matrix identity( size_type );
   matrix( const matrix& ) = default;
   matrix( matrix&& ) = default;
 
@@ -57,10 +57,10 @@ class matrix{
   // Element Access
   //----------------------------------------------------------------------------
  public:
-  T& at( std::size_t, std::size_t );
-  const T& at( std::size_t, std::size_t ) const;
-  matrix_row operator[]( std::size_t );
-  const matrix_row operator[]( std::size_t ) const;
+  T& at( size_type, size_type );
+  const T& at( size_type, size_type ) const;
+  matrix_row operator[]( size_type );
+  const matrix_row operator[]( size_type ) const;
 
   //----------------------------------------------------------------------------
   // Iterators
@@ -79,14 +79,14 @@ class matrix{
   // Size
   //----------------------------------------------------------------------------
  public:
-  std::size_t rows() const { return rows_;}
-  std::size_t columns() const {return cols_;}
+  size_type rows() const { return rows_;}
+  size_type columns() const {return cols_;}
 
   //----------------------------------------------------------------------------
   // Modifiers
   //----------------------------------------------------------------------------
  public:
-  void resize( std::size_t, std::size_t );
+  void resize( size_type, size_type );
   void fill( const T& );
   void swap( matrix& );
   friend void swap( matrix& m1, matrix& m2){
@@ -117,10 +117,10 @@ class matrix{
   class matrix_row{
    public:
     // Constructor
-    matrix_row(matrix*,std::size_t);
+    matrix_row( matrix*, size_type );
     // Element Access
-    T& operator[](std::size_t);
-    const T& operator[](std::size_t) const;
+    T& operator[]( size_type );
+    const T& operator[]( size_type ) const;
     // Iterators
     T* begin();
     T* end();
@@ -130,7 +130,7 @@ class matrix{
     const T* cend() const;
    private:
     matrix<T>* matrix_;
-    std::size_t row_;
+    size_type row_;
   };
 
   //----------------------------------------------------------------------------
@@ -138,15 +138,15 @@ class matrix{
   //----------------------------------------------------------------------------
  private:
   std::vector<T> make_vector(std::initializer_list<std::initializer_list<T>>);
-  std::size_t rc2i(std::size_t row,std::size_t col);
+  size_type rc2i( size_type, size_type );
 
   //----------------------------------------------------------------------------
   // Member Variables
   //----------------------------------------------------------------------------
  private:
   std::vector<T> data_;
-  std::size_t rows_;
-  std::size_t cols_;
+  size_type rows_;
+  size_type cols_;
 };
 
 //------------------------------------------------------------------------------
@@ -183,13 +183,13 @@ matrix<T>::matrix():
     cols_(0) {}
 
 template<class T>
-matrix<T>::matrix( std::size_t rows, std::size_t cols ):
+matrix<T>::matrix( size_type rows, size_type cols ):
     data_(rows*cols),
     rows_(rows),
     cols_(cols) {}
 
 template<class T>
-matrix<T>::matrix( std::initializer_list<std::initializer_list<T>> init_list):
+matrix<T>::matrix( std::initializer_list<std::initializer_list<T>> init_list ):
     data_( make_vector(init_list) ),
     rows_(init_list.size()),
     cols_( (init_list.size() > 0) ? init_list.begin()->size() : 0 ) {
@@ -200,7 +200,7 @@ matrix<T>::matrix( std::initializer_list<std::initializer_list<T>> init_list):
 }
 
 template<class T>
-matrix<T> matrix<T>::identity(std::size_t size){
+matrix<T> matrix<T>::identity( size_type size ){
   matrix<T> ret(size,size);
   for(int i=0; i<size; ++i){
     ret[i][i] = 1;
@@ -217,7 +217,7 @@ matrix<T> matrix<T>::identity(std::size_t size){
 namespace mat{
 
 template<class T>
-matrix<T>::matrix_row::matrix_row( matrix<T>* mp, std::size_t row):
+matrix<T>::matrix_row::matrix_row( matrix<T>* mp, size_type row ):
     matrix_(mp), row_(row){}
 
 }
@@ -258,7 +258,7 @@ matrix<T>& matrix<T>::operator=(
 namespace mat{
 
 template<class T>
-T& matrix<T>::at( std::size_t row, std::size_t col ){
+T& matrix<T>::at( size_type row, size_type col ){
   if(row >= rows()){
     throw std::out_of_range("row >= this->rows()!");
   }
@@ -269,7 +269,7 @@ T& matrix<T>::at( std::size_t row, std::size_t col ){
 }
 
 template<class T>
-const T& matrix<T>::at( std::size_t row, std::size_t col ) const{
+const T& matrix<T>::at( size_type row, size_type col ) const{
   if(row >= rows()){
     throw std::out_of_range("row >= this->rows()!");
   }
@@ -280,13 +280,13 @@ const T& matrix<T>::at( std::size_t row, std::size_t col ) const{
 }
 
 template<class T>
-typename matrix<T>::matrix_row matrix<T>::operator[]( std::size_t row ){
+typename matrix<T>::matrix_row matrix<T>::operator[]( size_type row ){
   return matrix_row(this,row);
 }
 
 template<class T>
 const typename matrix<T>::matrix_row matrix<T>::operator[](
-    std::size_t row ) const{
+    size_type row ) const{
   return matrix_row(const_cast<matrix<T>*>(this),row);
 }
 
@@ -299,12 +299,12 @@ const typename matrix<T>::matrix_row matrix<T>::operator[](
 namespace mat{
 
 template<class T>
-T& matrix<T>::matrix_row::operator[](std::size_t col){
+T& matrix<T>::matrix_row::operator[]( size_type col ){
   return matrix_->data_[matrix_->rc2i(row_,col)];
 }
 
 template<class T>
-const T& matrix<T>::matrix_row::operator[](std::size_t col) const{
+const T& matrix<T>::matrix_row::operator[]( size_type col ) const{
   return matrix_->data_[matrix_->rc2i(row_,col)];
 }
 
@@ -328,9 +328,10 @@ namespace mat{
 
 template<class T>
 matrix<T> operator-( const matrix<T>& m1 ){
+  using size_type = typename matrix<T>::size_type;
   matrix<T> mr(m1.rows(),m1.columns());
-  for(std::size_t r=0; r < mr.rows(); ++r){
-    for(std::size_t c=0; c < mr.columns(); ++c){
+  for(size_type r=0; r < mr.rows(); ++r){
+    for(size_type c=0; c < mr.columns(); ++c){
       mr[r][c] = -m1[r][c];
     }
   }
@@ -348,13 +349,14 @@ namespace mat{
 template<class T1, class T2>
 auto operator+( const matrix<T1>& m1, const matrix<T2>& m2 )
   -> matrix<decltype(m1[0][0]*m2[0][0])>{
+  using size_type = typename matrix<T1>::size_type;
   if(m1.rows() != m2.rows() || m1.columns() != m2.columns()){
     throw dimension_error(
         "Matrix addition requires same dimensions for both matrices!");
   }
   matrix<decltype(m1[0][0]*m2[0][0])> mr(m1.rows(),m1.columns());
-  for(std::size_t r=0; r < mr.rows(); ++r){
-    for(std::size_t c=0; c < mr.columns(); ++c){
+  for(size_type r=0; r < mr.rows(); ++r){
+    for(size_type c=0; c < mr.columns(); ++c){
       mr[r][c] = m1[r][c] + m2[r][c];
     }
   }
@@ -364,9 +366,10 @@ auto operator+( const matrix<T1>& m1, const matrix<T2>& m2 )
 template<class C,class T>
 auto operator+( const C& constant, const matrix<T>& m )
   -> matrix<decltype(constant+m[0][0])>{
+  using size_type = typename matrix<T>::size_type;
   matrix<T> mr(m.rows(),m.columns());
-  for(std::size_t r=0; r < mr.rows(); ++r){
-    for(std::size_t c=0; c < mr.columns(); ++c){
+  for(size_type r=0; r < mr.rows(); ++r){
+    for(size_type c=0; c < mr.columns(); ++c){
       mr[r][c] = constant + m[r][c];
     }
   }
@@ -390,13 +393,14 @@ namespace mat{
 template<class T1, class T2>
 auto operator-( const matrix<T1>& m1, const matrix<T2>& m2 )
   -> matrix<decltype(m1[0][0]*m2[0][0])>{
+  using size_type = typename matrix<T1>::size_type;
   if(m1.rows() != m2.rows() || m1.columns() != m2.columns()){
     throw dimension_error(
         "Matrix subtraction requires same dimensions for both matrices!");
   }
   matrix<decltype(m1[0][0]*m2[0][0])> mr(m1.rows(),m1.columns());
-  for(std::size_t r=0; r < mr.rows(); ++r){
-    for(std::size_t c=0; c < mr.columns(); ++c){
+  for(size_type r=0; r < mr.rows(); ++r){
+    for(size_type c=0; c < mr.columns(); ++c){
       mr[r][c] = m1[r][c] - m2[r][c];
     }
   }
@@ -406,9 +410,10 @@ auto operator-( const matrix<T1>& m1, const matrix<T2>& m2 )
 template<class C,class T>
 auto operator-( const C& constant, const matrix<T>& m )
   -> matrix<decltype(constant-m[0][0])>{
+  using size_type = typename matrix<T>::size_type;
   matrix<T> mr(m.rows(),m.columns());
-  for(std::size_t r=0; r < mr.rows(); ++r){
-    for(std::size_t c=0; c < mr.columns(); ++c){
+  for(size_type r=0; r < mr.rows(); ++r){
+    for(size_type c=0; c < mr.columns(); ++c){
       mr[r][c] = constant - m[r][c];
     }
   }
@@ -418,9 +423,10 @@ auto operator-( const C& constant, const matrix<T>& m )
 template<class C,class T>
 auto operator-( const matrix<T>& m, const C& constant)
   -> matrix<decltype(constant-m[0][0])>{
+  using size_type = typename matrix<T>::size_type;
   matrix<T> mr(m.rows(),m.columns());
-  for(std::size_t r=0; r < mr.rows(); ++r){
-    for(std::size_t c=0; c < mr.columns(); ++c){
+  for(size_type r=0; r < mr.rows(); ++r){
+    for(size_type c=0; c < mr.columns(); ++c){
       mr[r][c] = m[r][c] - constant;
     }
   }
@@ -542,12 +548,12 @@ matrix<T> matrix<T>::inverse() const {
 namespace mat{
 
 template<class T>
-void matrix<T>::resize( std::size_t rows, std::size_t cols ){
-  std::size_t old_rows = this->rows();
-  std::size_t old_cols = this->columns();
+void matrix<T>::resize( size_type rows, size_type cols ){
+  size_type old_rows = this->rows();
+  size_type old_cols = this->columns();
   std::vector<T> new_data( rows * cols );
-  for(std::size_t r=0; r < old_rows; ++r){
-    for(std::size_t c=0; c < old_cols; ++c){
+  for(size_type r=0; r < old_rows; ++r){
+    for(size_type c=0; c < old_cols; ++c){
       if( r < rows && c < cols ){
         new_data[r*cols+c] = data_[r*old_cols+c];
       }
@@ -626,8 +632,11 @@ std::vector<T> matrix<T>::make_vector(
   return vec;
 }
 
+/**
+ * rc2i - Matrix (r)ow and (c)olumn to Vector (i)ndex conversion
+ */
 template<class T>
-std::size_t matrix<T>::rc2i(std::size_t row,std::size_t col){
+typename matrix<T>::size_type matrix<T>::rc2i( size_type row, size_type col ){
   return row*cols_+col;
 }
 

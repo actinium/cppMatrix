@@ -10,9 +10,10 @@ namespace mat{
 
 template<class T>
 matrix<T> operator-( const matrix<T>& m1 ){
+  using size_type = typename matrix<T>::size_type;
   matrix<T> mr(m1.rows(),m1.columns());
-  for(std::size_t r=0; r < mr.rows(); ++r){
-    for(std::size_t c=0; c < mr.columns(); ++c){
+  for(size_type r=0; r < mr.rows(); ++r){
+    for(size_type c=0; c < mr.columns(); ++c){
       mr[r][c] = -m1[r][c];
     }
   }
@@ -30,13 +31,14 @@ namespace mat{
 template<class T1, class T2>
 auto operator+( const matrix<T1>& m1, const matrix<T2>& m2 )
   -> matrix<decltype(m1[0][0]*m2[0][0])>{
+  using size_type = typename matrix<T1>::size_type;
   if(m1.rows() != m2.rows() || m1.columns() != m2.columns()){
     throw dimension_error(
         "Matrix addition requires same dimensions for both matrices!");
   }
   matrix<decltype(m1[0][0]*m2[0][0])> mr(m1.rows(),m1.columns());
-  for(std::size_t r=0; r < mr.rows(); ++r){
-    for(std::size_t c=0; c < mr.columns(); ++c){
+  for(size_type r=0; r < mr.rows(); ++r){
+    for(size_type c=0; c < mr.columns(); ++c){
       mr[r][c] = m1[r][c] + m2[r][c];
     }
   }
@@ -46,9 +48,10 @@ auto operator+( const matrix<T1>& m1, const matrix<T2>& m2 )
 template<class C,class T>
 auto operator+( const C& constant, const matrix<T>& m )
   -> matrix<decltype(constant+m[0][0])>{
+  using size_type = typename matrix<T>::size_type;
   matrix<T> mr(m.rows(),m.columns());
-  for(std::size_t r=0; r < mr.rows(); ++r){
-    for(std::size_t c=0; c < mr.columns(); ++c){
+  for(size_type r=0; r < mr.rows(); ++r){
+    for(size_type c=0; c < mr.columns(); ++c){
       mr[r][c] = constant + m[r][c];
     }
   }
@@ -72,13 +75,14 @@ namespace mat{
 template<class T1, class T2>
 auto operator-( const matrix<T1>& m1, const matrix<T2>& m2 )
   -> matrix<decltype(m1[0][0]*m2[0][0])>{
+  using size_type = typename matrix<T1>::size_type;
   if(m1.rows() != m2.rows() || m1.columns() != m2.columns()){
     throw dimension_error(
         "Matrix subtraction requires same dimensions for both matrices!");
   }
   matrix<decltype(m1[0][0]*m2[0][0])> mr(m1.rows(),m1.columns());
-  for(std::size_t r=0; r < mr.rows(); ++r){
-    for(std::size_t c=0; c < mr.columns(); ++c){
+  for(size_type r=0; r < mr.rows(); ++r){
+    for(size_type c=0; c < mr.columns(); ++c){
       mr[r][c] = m1[r][c] - m2[r][c];
     }
   }
@@ -88,9 +92,10 @@ auto operator-( const matrix<T1>& m1, const matrix<T2>& m2 )
 template<class C,class T>
 auto operator-( const C& constant, const matrix<T>& m )
   -> matrix<decltype(constant-m[0][0])>{
+  using size_type = typename matrix<T>::size_type;
   matrix<T> mr(m.rows(),m.columns());
-  for(std::size_t r=0; r < mr.rows(); ++r){
-    for(std::size_t c=0; c < mr.columns(); ++c){
+  for(size_type r=0; r < mr.rows(); ++r){
+    for(size_type c=0; c < mr.columns(); ++c){
       mr[r][c] = constant - m[r][c];
     }
   }
@@ -100,9 +105,10 @@ auto operator-( const C& constant, const matrix<T>& m )
 template<class C,class T>
 auto operator-( const matrix<T>& m, const C& constant)
   -> matrix<decltype(constant-m[0][0])>{
+  using size_type = typename matrix<T>::size_type;
   matrix<T> mr(m.rows(),m.columns());
-  for(std::size_t r=0; r < mr.rows(); ++r){
-    for(std::size_t c=0; c < mr.columns(); ++c){
+  for(size_type r=0; r < mr.rows(); ++r){
+    for(size_type c=0; c < mr.columns(); ++c){
       mr[r][c] = m[r][c] - constant;
     }
   }
