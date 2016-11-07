@@ -26,16 +26,24 @@ namespace mat{
 
 template<class T>
 class matrix{
+ public:
+  class matrix_row_iterator;
+ private:
   class matrix_row;
+  friend class matrix_row;
   //----------------------------------------------------------------------------
   // Types
   //----------------------------------------------------------------------------
  public:
-  using value_type      = typename std::vector<T>::value_type;
-  using size_type       = typename std::vector<T>::size_type;
-  using difference_type = typename std::vector<T>::difference_type;
-  using reference       = typename std::vector<T>::reference;
-  using const_reference = typename std::vector<T>::const_reference;
+  using value_type             = typename std::vector<T>::value_type;
+  using size_type              = typename std::vector<T>::size_type;
+  using difference_type        = typename std::vector<T>::difference_type;
+  using reference              = typename std::vector<T>::reference;
+  using const_reference        = typename std::vector<T>::const_reference;
+  using iterator               = typename matrix<T>::matrix_row_iterator;
+  using const_iterator         = typename matrix<T>::matrix_row_iterator const;
+  using reverse_iterator       = std::reverse_iterator<iterator>;
+  using const_reverse_iterator = std::reverse_iterator<const_iterator>;
 
   //----------------------------------------------------------------------------
   // Constructors and assignments
@@ -67,14 +75,18 @@ class matrix{
   // Iterators
   //----------------------------------------------------------------------------
  public:
-  /*
-  matrix_row begin();
-  matrix_row end();
-  const matrix_row begin() const;
-  const matrix_row end() const;
-  const matrix_row cbegin() const;
-  const matrix_row cend() const;
-  */
+  iterator begin();
+  iterator end();
+  const_iterator begin() const;
+  const_iterator end() const;
+  const_iterator cbegin() const;
+  const_iterator cend() const;
+  reverse_iterator rbegin();
+  reverse_iterator rend();
+  const_reverse_iterator rbegin() const;
+  const_reverse_iterator rend() const;
+  const_reverse_iterator crbegin() const;
+  const_reverse_iterator crend() const;
 
   //----------------------------------------------------------------------------
   // Size
@@ -116,19 +128,46 @@ class matrix{
   //----------------------------------------------------------------------------
  private:
   class matrix_row{
+    // Types
    public:
+    using iterator               = typename std::vector<T>::iterator;
+    using const_iterator         = typename std::vector<T>::const_iterator;
+    using reverse_iterator       = typename std::vector<T>::reverse_iterator;
+    using const_reverse_iterator = typename std::vector<T>::const_reverse_iterator;
     // Constructor
+   public:
     matrix_row( matrix*, size_type );
     // Element Access
+   public:
     T& operator[]( size_type );
     const T& operator[]( size_type ) const;
     // Iterators
-    T* begin();
-    T* end();
-    const T* begin() const;
-    const T* end() const;
-    const T* cbegin() const;
-    const T* cend() const;
+   public:
+    iterator begin();
+    iterator end();
+    const_iterator begin() const;
+    const_iterator end() const;
+    const_iterator cbegin() const;
+    const_iterator cend() const;
+    reverse_iterator rbegin();
+    reverse_iterator rend();
+    const_reverse_iterator rbegin() const;
+    const_reverse_iterator rend() const;
+    const_reverse_iterator crbegin() const;
+    const_reverse_iterator crend() const;
+   private:
+    matrix<T>* matrix_;
+    size_type row_;
+  };
+
+  //----------------------------------------------------------------------------
+  // Row Iterator Class
+  //----------------------------------------------------------------------------
+ public:
+  class matrix_row_iterator{
+    // Constructor
+   public:
+    matrix_row_iterator( matrix*, size_type );
    private:
     matrix<T>* matrix_;
     size_type row_;
@@ -584,6 +623,84 @@ void matrix<T>::resize( size_type rows, size_type cols ){
 //------------------------------------------------------------------------------
 
 namespace mat{
+//------------------------------------------------------------------------------
+// Iterations over rows of a matrix
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// Iterations over elements of a row
+//------------------------------------------------------------------------------
+// Normal iterators
+template<class T>
+typename matrix<T>::matrix_row::iterator matrix<T>::matrix_row::begin(){
+  return matrix_->data_.begin() + matrix_->rc2i(row_,0);
+}
+
+template<class T>
+typename matrix<T>::matrix_row::iterator matrix<T>::matrix_row::end(){
+  return matrix_->data_.begin() + matrix_->rc2i(row_,matrix_->columns());
+}
+
+template<class T>
+typename matrix<T>::matrix_row::const_iterator
+  matrix<T>::matrix_row::begin() const{
+  return matrix_->data_.begin() + matrix_->rc2i(row_,0);
+}
+
+template<class T>
+typename matrix<T>::matrix_row::const_iterator
+  matrix<T>::matrix_row::end() const{
+  return matrix_->data_.begin() + matrix_->rc2i(row_,matrix_->columns());
+}
+
+template<class T>
+typename matrix<T>::matrix_row::const_iterator
+  matrix<T>::matrix_row::cbegin() const{
+  return matrix_->data_.begin() + matrix_->rc2i(row_,0);
+}
+
+template<class T>
+typename matrix<T>::matrix_row::const_iterator
+  matrix<T>::matrix_row::cend() const{
+  return matrix_->data_.begin() + matrix_->rc2i(row_,matrix_->columns());
+}
+
+// Reverse iterators
+template<class T>
+typename matrix<T>::matrix_row::reverse_iterator
+  matrix<T>::matrix_row::rbegin(){
+  return reverse_iterator(end());
+}
+
+template<class T>
+typename matrix<T>::matrix_row::reverse_iterator
+  matrix<T>::matrix_row::rend(){
+  return reverse_iterator(begin());
+}
+
+template<class T>
+typename matrix<T>::matrix_row::const_reverse_iterator
+  matrix<T>::matrix_row::rbegin() const{
+  return const_reverse_iterator(end());
+}
+
+template<class T>
+typename matrix<T>::matrix_row::const_reverse_iterator
+  matrix<T>::matrix_row::rend() const{
+  return const_reverse_iterator(begin());
+}
+
+template<class T>
+typename matrix<T>::matrix_row::const_reverse_iterator
+  matrix<T>::matrix_row::crbegin() const{
+  return const_reverse_iterator(end());
+}
+
+template<class T>
+typename matrix<T>::matrix_row::const_reverse_iterator
+  matrix<T>::matrix_row::crend() const{
+  return const_reverse_iterator(begin());
+}
 
 }
 

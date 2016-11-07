@@ -11,20 +11,21 @@ OBJDIR=obj
 MATRIX_HEADER=$(INCDIR)/matrix.h
 
 _SOURCES= matrix.h \
-           matrix_constructors_impl.h \
-           matrix_assignment_impl.h \
-           matrix_access_impl.h \
-           matrix_math_impl.h \
-           matrix_modifiers_impl.h \
-           matrix_iterators_impl.h \
-           matrix_comparison_impl.h \
-           matrix_helper_functions_impl.h
+          matrix_constructors_impl.h \
+          matrix_assignment_impl.h \
+          matrix_access_impl.h \
+          matrix_math_impl.h \
+          matrix_modifiers_impl.h \
+          matrix_iterators_impl.h \
+          matrix_comparison_impl.h \
+          matrix_helper_functions_impl.h
 
 SOURCES=$(patsubst %,$(SRCDIR)/%,$(_SOURCES))
 
 _OBJECTS= test_main.o \
           test_matrix_constructors.o \
           test_matrix_access.o \
+          test_matrix_iterators.o \
           test_matrix_modifiers.o \
           test_matrix_math.o \
           test_matrix_comparison.o
