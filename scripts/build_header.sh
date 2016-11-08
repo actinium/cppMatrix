@@ -14,6 +14,11 @@ function clear_file {
   echo -n "" > $filename
 }
 
+function add_license {
+  #use sed to prepend "// " to each line of LICENSE
+  sed -e 's/^/\/\/ /' LICENSE >> $filename
+}
+
 function add_top_comment {
   echo "//==============================================================================" >> $filename
   echo "//" >> $filename
@@ -25,7 +30,10 @@ function add_top_comment {
   echo "//                      PLEASE DON'T EDIT IT DIRECTLY!" >> $filename
   echo "//" >> $filename
   echo "//==============================================================================" >> $filename
-  echo "" >> $filename
+  echo "//" >> $filename
+  add_license
+  echo "//" >> $filename
+  echo "//==============================================================================" >> $filename
 }
 
 function add_top_header_guard {
