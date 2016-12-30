@@ -13,7 +13,7 @@ TEST_CASE( "Test matrix_row begin and end", "[matrix][iterators]" ) {
       ++i;
     }
   }
-  SECTION("Iterate second first row"){
+  SECTION("Iterate over second row"){
     auto b = m[1].begin();
     auto e = m[1].end();
     for(int i=0; b < e; ++b){
@@ -43,7 +43,7 @@ TEST_CASE( "Test const matrix_row begin and end", "[matrix][iterators]" ) {
       ++i;
     }
   }
-  SECTION("Iterate second first row"){
+  SECTION("Iterate over second row"){
     auto b = m[1].begin();
     auto e = m[1].end();
     for(int i=0; b < e; ++b){
@@ -73,7 +73,7 @@ TEST_CASE( "Test matrix_row cbegin and cend", "[matrix][iterators]" ) {
       ++i;
     }
   }
-  SECTION("Iterate second first row"){
+  SECTION("Iterate over second row"){
     auto b = m[1].cbegin();
     auto e = m[1].cend();
     for(int i=0; b < e; ++b){
@@ -103,7 +103,7 @@ TEST_CASE( "Test matrix_row rbegin and rend", "[matrix][iterators]" ) {
       ++i;
     }
   }
-  SECTION("Iterate second first row"){
+  SECTION("Iterate over second row"){
     auto b = m[1].rbegin();
     auto e = m[1].rend();
     for(int i=0; b < e; ++b){
@@ -133,7 +133,7 @@ TEST_CASE( "Test const matrix_row rbegin and rend", "[matrix][iterators]" ) {
       ++i;
     }
   }
-  SECTION("Iterate second first row"){
+  SECTION("Iterate over second row"){
     auto b = m[1].rbegin();
     auto e = m[1].rend();
     for(int i=0; b < e; ++b){
@@ -163,7 +163,7 @@ TEST_CASE( "Test matrix_row crbegin and crend", "[matrix][iterators]" ) {
       ++i;
     }
   }
-  SECTION("Iterate second first row"){
+  SECTION("Iterate over second row"){
     auto b = m[1].crbegin();
     auto e = m[1].crend();
     for(int i=0; b < e; ++b){
