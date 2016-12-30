@@ -188,12 +188,17 @@ class matrix{
   //----------------------------------------------------------------------------
  public:
   class matrix_row_iterator{
+    using size_type       = typename matrix<T>::size_type;
+    using difference_type = typename matrix<T>::difference_type;
+    using reference       = typename matrix<T>::reference;
     // Constructor
    public:
     matrix_row_iterator( matrix*, size_type );
     // Iterator methods
    public:
     matrix_row operator*();
+    matrix_row operator[](size_type);
+
     matrix_row_iterator& operator++();
     matrix_row_iterator operator++(int);
     matrix_row_iterator& operator--();
@@ -670,7 +675,13 @@ namespace mat{
 //------------------------------------------------------------------------------
 template<class T>
 typename matrix<T>::matrix_row matrix<T>::matrix_row_iterator::operator*(){
-  return matrix_row(matrix_,row_);
+  return matrix_row( matrix_, row_ );
+}
+
+template<class T>
+typename matrix<T>::matrix_row
+  matrix<T>::matrix_row_iterator::operator[]( size_type index ){
+  return matrix_row( matrix_, row_ + index );
 }
 
 template<class T>

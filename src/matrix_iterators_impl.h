@@ -8,7 +8,13 @@ namespace mat{
 //------------------------------------------------------------------------------
 template<class T>
 typename matrix<T>::matrix_row matrix<T>::matrix_row_iterator::operator*(){
-  return matrix_row(matrix_,row_);
+  return matrix_row( matrix_, row_ );
+}
+
+template<class T>
+typename matrix<T>::matrix_row
+  matrix<T>::matrix_row_iterator::operator[]( size_type index ){
+  return matrix_row( matrix_, row_ + index );
 }
 
 template<class T>
