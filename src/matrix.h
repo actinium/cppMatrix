@@ -138,6 +138,15 @@ class matrix{
     matrix<T>* matrix_;
     size_type row_;
   };
+ private:
+  class matrix_row_pointer{
+   public:
+    matrix_row_pointer( matrix* m, size_type r):matrix_row_(m,r){}
+    matrix_row operator*(){ return matrix_row_; }
+    matrix_row* operator->(){ return &matrix_row_; }
+   private:
+    matrix_row matrix_row_;
+  };
 
   //----------------------------------------------------------------------------
   // Row Iterator Class
@@ -153,12 +162,16 @@ class matrix{
     // Iterator methods
    public:
     matrix_row operator*();
+    matrix_row_pointer operator->();
     matrix_row operator[](size_type);
 
     matrix_row_iterator& operator++();
     matrix_row_iterator operator++(int);
     matrix_row_iterator& operator--();
     matrix_row_iterator operator--(int);
+
+    bool operator==(const matrix_row_iterator&);
+    bool operator!=(const matrix_row_iterator&);
    private:
     matrix<T>* matrix_;
     size_type  row_;

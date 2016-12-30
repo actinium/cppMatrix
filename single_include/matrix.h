@@ -182,6 +182,15 @@ class matrix{
     matrix<T>* matrix_;
     size_type row_;
   };
+ private:
+  class matrix_row_pointer{
+   public:
+    matrix_row_pointer( matrix* m, size_type r):matrix_row_(m,r){}
+    matrix_row operator*(){ return matrix_row_; }
+    matrix_row* operator->(){ return &matrix_row_; }
+   private:
+    matrix_row matrix_row_;
+  };
 
   //----------------------------------------------------------------------------
   // Row Iterator Class
@@ -197,12 +206,16 @@ class matrix{
     // Iterator methods
    public:
     matrix_row operator*();
+    matrix_row_pointer operator->();
     matrix_row operator[](size_type);
 
     matrix_row_iterator& operator++();
     matrix_row_iterator operator++(int);
     matrix_row_iterator& operator--();
     matrix_row_iterator operator--(int);
+
+    bool operator==(const matrix_row_iterator&);
+    bool operator!=(const matrix_row_iterator&);
    private:
     matrix<T>* matrix_;
     size_type  row_;
@@ -679,6 +692,11 @@ typename matrix<T>::matrix_row matrix<T>::matrix_row_iterator::operator*(){
 }
 
 template<class T>
+typename matrix<T>::matrix_row_pointer matrix<T>::matrix_row_iterator::operator->(){
+  return matrix_row_pointer( matrix_, row_ );
+}
+
+template<class T>
 typename matrix<T>::matrix_row
   matrix<T>::matrix_row_iterator::operator[]( size_type index ){
   return matrix_row( matrix_, row_ + index );
@@ -714,6 +732,15 @@ typename matrix<T>::matrix_row_iterator
   return mri;
 }
 
+template<class T>
+bool matrix<T>::matrix_row_iterator::operator==(const matrix_row_iterator& m_other){
+  return matrix_ == m_other.matrix_ && row_ == m_other.row_;
+}
+
+template<class T>
+bool matrix<T>::matrix_row_iterator::operator!=(const matrix_row_iterator& m_other){
+  return !operator==(m_other);
+}
 //------------------------------------------------------------------------------
 // Iterators over rows of a matrix
 //------------------------------------------------------------------------------

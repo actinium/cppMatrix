@@ -181,7 +181,7 @@ TEST_CASE( "Test matrix_row crbegin and crend", "[matrix][iterators]" ) {
   }
 }
 
-TEST_CASE( "Test matrix begin and end", "[matrix][iterators]" ) {
+TEST_CASE( "Test matrix begin and end dereferencing", "[matrix][iterators]" ) {
   mat::matrix<int> m = {{11,12,13},
                         {21,22,23},
                         {31,32,33}};
@@ -196,10 +196,30 @@ TEST_CASE( "Test matrix begin and end", "[matrix][iterators]" ) {
     auto elem = *((*b).begin());
     REQUIRE( elem == m[0][0] );
   }
+  SECTION("Test dereferencing"){
+    auto elem = *( b->begin() );
+    REQUIRE( elem == m[0][0] );
+  }
   SECTION("Test operator[]"){
     REQUIRE( b[0][0] == m[0][0] );
     REQUIRE( b[1][0] == m[1][0] );
     REQUIRE( b[2][1] == m[2][1] );
+  }
+}
+
+TEST_CASE( "Test matrix begin and end looping", "[matrix][iterators]" ) {
+  mat::matrix<int> m = {{11,12,13},
+                        {21,22,23},
+                        {31,32,33}};
+  SECTION("Test setting all elements to 42"){
+    for( auto r: m ){
+      for( auto& e: r ){
+        e = 42;
+      }
+    }
+    REQUIRE( m[0][0] == 42 );
+    REQUIRE( m[1][0] == 42 );
+    REQUIRE( m[2][1] == 42 );
   }
 }
 

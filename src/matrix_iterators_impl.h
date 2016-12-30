@@ -12,6 +12,11 @@ typename matrix<T>::matrix_row matrix<T>::matrix_row_iterator::operator*(){
 }
 
 template<class T>
+typename matrix<T>::matrix_row_pointer matrix<T>::matrix_row_iterator::operator->(){
+  return matrix_row_pointer( matrix_, row_ );
+}
+
+template<class T>
 typename matrix<T>::matrix_row
   matrix<T>::matrix_row_iterator::operator[]( size_type index ){
   return matrix_row( matrix_, row_ + index );
@@ -47,6 +52,15 @@ typename matrix<T>::matrix_row_iterator
   return mri;
 }
 
+template<class T>
+bool matrix<T>::matrix_row_iterator::operator==(const matrix_row_iterator& m_other){
+  return matrix_ == m_other.matrix_ && row_ == m_other.row_;
+}
+
+template<class T>
+bool matrix<T>::matrix_row_iterator::operator!=(const matrix_row_iterator& m_other){
+  return !operator==(m_other);
+}
 //------------------------------------------------------------------------------
 // Iterators over rows of a matrix
 //------------------------------------------------------------------------------
