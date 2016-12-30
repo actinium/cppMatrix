@@ -147,9 +147,16 @@ class matrix{
     // Constructor
    public:
     matrix_row_iterator( matrix*, size_type );
+    // Iterator methods
+   public:
+    matrix_row operator*();
+    matrix_row_iterator& operator++();
+    matrix_row_iterator operator++(int);
+    matrix_row_iterator& operator--();
+    matrix_row_iterator operator--(int);
    private:
     matrix<T>* matrix_;
-    size_type row_;
+    size_type  row_;
   };
 
   //----------------------------------------------------------------------------

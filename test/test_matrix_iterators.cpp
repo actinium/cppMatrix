@@ -180,3 +180,52 @@ TEST_CASE( "Test matrix_row crbegin and crend", "[matrix][iterators]" ) {
     }
   }
 }
+
+TEST_CASE( "Test matrix begin and end increment and decrement", "[matrix][iterators]" ) {
+  mat::matrix<int> m = {{11,12,13},
+                        {21,22,23},
+                        {31,32,33}};
+  auto b = m.begin();
+  auto e = m.end();
+  SECTION("Test increment"){
+    ++b;
+    auto row = *b;
+    auto elem = *(row.begin());
+    REQUIRE( elem == m[1][0] );
+  }
+  SECTION("Test post increment"){
+    b++;
+    auto row = *b;
+    auto elem = *(row.begin());
+    REQUIRE( elem == m[1][0] );
+  }
+  SECTION("Test post increment in expression"){
+    auto row = *b++;
+    auto elem = *(row.begin());
+    REQUIRE( elem == m[0][0] );
+    auto row2 = *b;
+    auto elem2 = *(row2.begin());
+    REQUIRE( elem2 == m[1][0] );
+  }
+  SECTION("Test decrement"){
+    --e;
+    auto row = *e;
+    auto elem = *(row.begin());
+    REQUIRE( elem == m[2][0] );
+  }
+  SECTION("Test post decrement"){
+    e--;
+    auto row = *e;
+    auto elem = *(row.begin());
+    REQUIRE( elem == m[2][0] );
+  }
+  SECTION("Test post decrement in expression"){
+    e--;
+    auto row = *e--;
+    auto elem = *(row.begin());
+    REQUIRE( elem == m[2][0] );
+    auto row2 = *e;
+    auto elem2 = *(row2.begin());
+    REQUIRE( elem2 == m[1][0] );
+  }
+}
