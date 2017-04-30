@@ -50,14 +50,3 @@ matrix<T>::matrix_row::matrix_row( matrix<T>* mp, size_type row ):
 
 }
 
-//------------------------------------------------------------------------------
-// Row Iterator Class Constructor
-//------------------------------------------------------------------------------
-
-namespace mat{
-
-template<class T>
-matrix<T>::matrix_row_iterator::matrix_row_iterator(
-    matrix<T>* mp, size_type row ): matrix_(mp), row_(row){}
-
-}

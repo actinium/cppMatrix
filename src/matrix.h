@@ -5,8 +5,6 @@ namespace mat{
 
 template<class T>
 class matrix{
- public:
-  class matrix_row_iterator;
  private:
   class matrix_row;
   friend class matrix_row;
@@ -19,10 +17,10 @@ class matrix{
   using difference_type        = typename std::vector<T>::difference_type;
   using reference              = typename std::vector<T>::reference;
   using const_reference        = typename std::vector<T>::const_reference;
-  using iterator               = typename matrix<T>::matrix_row_iterator;
-  using const_iterator         = typename matrix<T>::matrix_row_iterator const;
-  using reverse_iterator       = std::reverse_iterator<iterator>;
-  using const_reverse_iterator = std::reverse_iterator<const_iterator>;
+  using iterator               = typename std::vector<T>::iterator;
+  using const_iterator         = typename std::vector<T>::const_iterator;
+  using reverse_iterator       = typename std::vector<T>::reverse_iterator;
+  using const_reverse_iterator = typename std::vector<T>::const_reverse_iterator;
 
   //----------------------------------------------------------------------------
   // Constructors and assignments
@@ -146,35 +144,6 @@ class matrix{
     matrix_row* operator->(){ return &matrix_row_; }
    private:
     matrix_row matrix_row_;
-  };
-
-  //----------------------------------------------------------------------------
-  // Row Iterator Class
-  //----------------------------------------------------------------------------
- public:
-  class matrix_row_iterator{
-    using size_type       = typename matrix<T>::size_type;
-    using difference_type = typename matrix<T>::difference_type;
-    using reference       = typename matrix<T>::reference;
-    // Constructor
-   public:
-    matrix_row_iterator( matrix*, size_type );
-    // Iterator methods
-   public:
-    matrix_row operator*();
-    matrix_row_pointer operator->();
-    matrix_row operator[](size_type);
-
-    matrix_row_iterator& operator++();
-    matrix_row_iterator operator++(int);
-    matrix_row_iterator& operator--();
-    matrix_row_iterator operator--(int);
-
-    bool operator==(const matrix_row_iterator&);
-    bool operator!=(const matrix_row_iterator&);
-   private:
-    matrix<T>* matrix_;
-    size_type  row_;
   };
 
   //----------------------------------------------------------------------------
