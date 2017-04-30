@@ -5,7 +5,7 @@
 namespace mat{
 
 template<class T>
-T& matrix<T>::at( size_type row, size_type col ){
+typename matrix<T>::reference matrix<T>::at( size_type row, size_type col ){
   if(row >= rows()){
     throw std::out_of_range("row >= this->rows()!");
   }
@@ -16,7 +16,7 @@ T& matrix<T>::at( size_type row, size_type col ){
 }
 
 template<class T>
-const T& matrix<T>::at( size_type row, size_type col ) const{
+typename matrix<T>::const_reference matrix<T>::at( size_type row, size_type col ) const{
   if(row >= rows()){
     throw std::out_of_range("row >= this->rows()!");
   }
@@ -46,12 +46,12 @@ const typename matrix<T>::matrix_row matrix<T>::operator[](
 namespace mat{
 
 template<class T>
-T& matrix<T>::matrix_row::operator[]( size_type col ){
+typename matrix<T>::reference matrix<T>::matrix_row::operator[]( size_type col ){
   return matrix_->data_[matrix_->rc2i(row_,col)];
 }
 
 template<class T>
-const T& matrix<T>::matrix_row::operator[]( size_type col ) const{
+typename matrix<T>::const_reference  matrix<T>::matrix_row::operator[]( size_type col ) const{
   return matrix_->data_[matrix_->rc2i(row_,col)];
 }
 

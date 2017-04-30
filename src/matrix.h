@@ -43,8 +43,8 @@ class matrix{
   // Element Access
   //----------------------------------------------------------------------------
  public:
-  T& at( size_type, size_type );
-  const T& at( size_type, size_type ) const;
+  reference at( size_type, size_type );
+  const_reference at( size_type, size_type ) const;
   matrix_row operator[]( size_type );
   const matrix_row operator[]( size_type ) const;
 
@@ -116,8 +116,8 @@ class matrix{
     matrix_row( matrix*, size_type );
     // Element Access
    public:
-    T& operator[]( size_type );
-    const T& operator[]( size_type ) const;
+    matrix<T>::reference operator[]( size_type );
+    matrix<T>::const_reference operator[]( size_type ) const;
     // Iterators
    public:
     iterator begin();

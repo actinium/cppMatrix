@@ -61,3 +61,18 @@ TEST_CASE( "Test changing elements out of range", "[matrix][access]" ) {
     REQUIRE_THROWS_AS( m.at(2,2) = 1, std::out_of_range );
   }
 }
+
+TEST_CASE( "Test boolean values", "[matrix][access]" ) {
+  SECTION("Test at and [] in 2x2 matrix"){
+    mat::matrix<bool> m = {{true,false},
+                           {false,true}};
+    REQUIRE( m[0][0] == true);
+    REQUIRE( m[0][1] == false);
+    REQUIRE( m[1][0] == false);
+    REQUIRE( m[1][1] == true);
+    REQUIRE( m.at(0,0) == m[0][0]);
+    REQUIRE( m.at(0,1) == m[0][1]);
+    REQUIRE( m.at(1,0) == m[1][0]);
+    REQUIRE( m.at(1,1) == m[1][1]);
+  }
+}
