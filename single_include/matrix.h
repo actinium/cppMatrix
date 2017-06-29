@@ -123,10 +123,6 @@ class matrix{
   void resize( size_type, size_type );
   void fill( const T& );
   void swap( matrix& );
-  friend void swap( matrix& m1, matrix& m2){
-    using std::swap;
-    // swap m1 and m2
-  }
 
   //----------------------------------------------------------------------------
   // Comparison
@@ -205,6 +201,12 @@ class matrix{
   size_type rows_;
   size_type cols_;
 };
+
+//------------------------------------------------------------------------------
+// Swap
+//------------------------------------------------------------------------------
+template<class T>
+void swap( matrix<T>&, matrix<T>& );
 
 //------------------------------------------------------------------------------
 // Dimension Exception
@@ -731,6 +733,34 @@ bool matrix<T>::operator==( const matrix<T>& other ) const {
 template< class T >
 bool matrix<T>::operator!=( const matrix<T>& other ) const {
   return !operator==(other);
+}
+
+}
+
+//==============================================================================
+//
+// Included from: matrix_swap_impl.h
+//
+//==============================================================================
+
+#line 1 "matrix_swap_impl.h"
+//------------------------------------------------------------------------------
+// Swap
+//------------------------------------------------------------------------------
+
+namespace mat{
+
+template<class T>
+void matrix<T>::swap( matrix<T>& other ){
+  using std::swap;
+  swap( data_, other.data_ );
+  swap( rows_, other.rows_ );
+  swap( cols_, other.cols_ );
+}
+
+template<class T>
+void swap( matrix<T>& m1, matrix<T>& m2 ){
+  m1.swap( m2 );
 }
 
 }

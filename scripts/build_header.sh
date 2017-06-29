@@ -76,6 +76,7 @@ append_file matrix_math_impl.h
 append_file matrix_modifiers_impl.h
 append_file matrix_iterators_impl.h
 append_file matrix_comparison_impl.h
+append_file matrix_swap_impl.h
 append_file matrix_helper_functions_impl.h
 
 add_bottom_header_guard

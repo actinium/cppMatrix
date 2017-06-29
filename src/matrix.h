@@ -79,10 +79,6 @@ class matrix{
   void resize( size_type, size_type );
   void fill( const T& );
   void swap( matrix& );
-  friend void swap( matrix& m1, matrix& m2){
-    using std::swap;
-    // swap m1 and m2
-  }
 
   //----------------------------------------------------------------------------
   // Comparison
@@ -161,6 +157,12 @@ class matrix{
   size_type rows_;
   size_type cols_;
 };
+
+//------------------------------------------------------------------------------
+// Swap
+//------------------------------------------------------------------------------
+template<class T>
+void swap( matrix<T>&, matrix<T>& );
 
 //------------------------------------------------------------------------------
 // Dimension Exception
