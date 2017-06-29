@@ -1,5 +1,8 @@
 #TODO
 
+- implement output to ostream
+- implement pretty-print to ostream
+
 - Implement inverse
 - Implement determinant
 - Implement equation solving (Ax=B)
