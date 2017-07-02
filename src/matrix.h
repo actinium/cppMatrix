@@ -147,7 +147,7 @@ class matrix{
   //----------------------------------------------------------------------------
  private:
   std::vector<T> make_vector(std::initializer_list<std::initializer_list<T>>);
-  size_type rc2i( size_type, size_type );
+  size_type rc2i( size_type, size_type ) const;
 
   //----------------------------------------------------------------------------
   // Member Variables
