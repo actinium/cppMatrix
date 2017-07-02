@@ -191,7 +191,7 @@ class matrix{
   //----------------------------------------------------------------------------
  private:
   std::vector<T> make_vector(std::initializer_list<std::initializer_list<T>>);
-  size_type rc2i( size_type, size_type );
+  size_type rc2i( size_type, size_type ) const;
 
   //----------------------------------------------------------------------------
   // Member Variables
@@ -761,6 +761,41 @@ void swap( matrix<T>& m1, matrix<T>& m2 ){
 
 //==============================================================================
 //
+// Included from: matrix_output_impl.h
+//
+//==============================================================================
+
+#line 1 "matrix_output_impl.h"
+//------------------------------------------------------------------------------
+// Matrix Output
+//------------------------------------------------------------------------------
+
+namespace mat{
+
+template<class T>
+std::ostream& operator<<( std::ostream& os, const matrix<T>& m ){
+  os << "[";
+  for( int r=0; r < m.rows(); ++r ){
+    os << "[";
+    for( int c=0; c < m.columns(); ++c ){
+      os << m[r][c];
+      if( c != m.columns() - 1 ){
+        os << ",";
+      }
+    }
+    os << "]";
+    if( r != m.rows() - 1 ){
+      os << ",";
+    }
+  }
+  os << "]";
+  return os;
+}
+
+}
+
+//==============================================================================
+//
 // Included from: matrix_helper_functions_impl.h
 //
 //==============================================================================
@@ -786,7 +821,7 @@ std::vector<T> matrix<T>::make_vector(
  * rc2i - Matrix (r)ow and (c)olumn to Vector (i)ndex conversion
  */
 template<class T>
-typename matrix<T>::size_type matrix<T>::rc2i( size_type row, size_type col ){
+typename matrix<T>::size_type matrix<T>::rc2i( size_type row, size_type col ) const{
   return row*cols_+col;
 }
 

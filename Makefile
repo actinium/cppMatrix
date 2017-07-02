@@ -19,7 +19,8 @@ _SOURCES= matrix.h \
           matrix_iterators_impl.h \
           matrix_comparison_impl.h \
           matrix_helper_functions_impl.h\
-          matrix_swap_impl.h
+          matrix_swap_impl.h\
+					matrix_output_impl.h
 
 SOURCES=$(patsubst %,$(SRCDIR)/%,$(_SOURCES))
 
@@ -30,7 +31,8 @@ _OBJECTS= test_main.o \
           test_matrix_modifiers.o \
           test_matrix_math.o \
           test_matrix_comparison.o\
-          test_matrix_swap.o
+          test_matrix_swap.o\
+          test_matrix_output.o
 
 OBJECTS=$(patsubst %,$(OBJDIR)/%,$(_OBJECTS))
 
