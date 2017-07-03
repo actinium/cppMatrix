@@ -58,7 +58,7 @@ TEST_CASE( "Test matrix output", "[matrix][output]" ) {
     
     REQUIRE( ss.str() == "[[true,false],[false,true]]" );
   }
-  SECTION("Output calculation"){
+  SECTION("Output one line calculation"){
     mat::matrix<int> m1 = {{2, 3}};
     mat::matrix<int> m2 = {{5},{6}};
     std::stringstream ss;
@@ -67,6 +67,19 @@ TEST_CASE( "Test matrix output", "[matrix][output]" ) {
     ss << " = " << (m1 * m2) << std::endl;
 
     REQUIRE( ss.str() == "[[2,3]] * [[5],[6]] = [[28]]\n" );
+  }
+  SECTION("Output multiple line calculation"){
+    mat::matrix<int> m1 = {{ 2, 3},
+                           {-5,10}};
+    mat::matrix<int> m2 = {{ 5, 3},
+                           {-1,-3}};
+    std::stringstream ss;
+
+    ss << " " << m1 << std::endl;
+    ss << "+" << m2 << std::endl;
+    ss << "=" << (m1 + m2) << std::endl;
+
+    REQUIRE( ss.str() == " [[2,3],[-5,10]]\n+[[5,3],[-1,-3]]\n=[[7,6],[-6,7]]\n" );
   }
 }
 
